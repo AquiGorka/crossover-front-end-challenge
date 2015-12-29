@@ -19721,10 +19721,34 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var colors = {
-		pending: '#f7ab59',
-		failed: '#eb5463',
-		passed: '#1bb392',
-		running: '#1d84c4'
+		hex: {
+			pending: '#f7ab59',
+			failed: '#eb5463',
+			passed: '#1bb392',
+			running: '#1d84c4'
+		},
+		rgb: {
+			pending: {
+				r: 247,
+				g: 171,
+				b: 89
+			},
+			failed: {
+				r: 235,
+				g: 84,
+				b: 99
+			},
+			passed: {
+				r: 27,
+				g: 179,
+				b: 146
+			},
+			running: {
+				r: 29,
+				g: 132,
+				b: 196
+			}
+		}
 	},
 	    styles = {
 		wrapper: {
@@ -19734,36 +19758,37 @@
 			margin: 'auto'
 		},
 		list: {
-			listStyle: 'none',
-			padding: 0,
-			margin: 0,
-			borderTop: '1px solid #E3E3E3',
-			borderBottom: '1px solid #E3E3E3',
-			background: '#FFF'
-		},
-		listHeader: {
-			borderLeft: '5px solid #D1D1D1',
-			borderBottom: '1px solid #E3E3E3',
-			display: 'flex',
-			alignItems: 'center',
-			height: 40
-		},
-		listItem: {
-			borderLeft: '5px solid #D1D1D1',
-			borderBottom: '1px solid #E3E3E3',
-			display: 'flex',
-			alignItems: 'center',
-			minHeight: 60
+			wrapper: {
+				listStyle: 'none',
+				padding: 0,
+				margin: 0,
+				borderTop: '1px solid #E3E3E6',
+				borderBottom: '1px solid #E3E3E6',
+				background: '#FFF'
+			},
+			item: {
+				borderLeft: '5px solid #D1D1D1',
+				borderBottom: '1px solid #E3E3E6',
+				borderRight: '1px solid #E3E3E6',
+				display: 'flex',
+				alignItems: 'center',
+				minHeight: 60
+			}
 		},
 		header: {
 			wrapper: {
-				width: '100%',
+				border: '1px solid #E3E3E6',
+				borderLeft: '5px solid #D1D1D1',
+				borderBottom: 'none',
+				background: '#FFF',
+				height: 40,
 				display: 'flex',
 				boxSizing: 'border-box',
 				flexGrow: 1,
 				alignItems: 'center',
-				color: '#454545',
-				fontSize: 14
+				color: '#858585',
+				fontSize: 14,
+				fontWeight: 'bold'
 			},
 			item: {
 				boxSizing: 'border-box',
@@ -19771,37 +19796,47 @@
 				flexGrow: 1,
 				width: 50
 			},
-			firstItem: {
+			id: {
 				boxSizing: 'border-box',
 				display: 'flex',
 				flexGrow: 1,
 				width: 50,
 				paddingLeft: 20
 			},
+			status: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				flexGrow: 1,
+				width: 50,
+				paddingLeft: 10
+			},
 			phase: {
 				wrapper: {
 					boxSizing: 'border-box',
 					display: 'flex',
 					justifyContent: 'space-around',
-					width: 300
+					width: 450
 				},
 				item: {
-					boxSizing: 'border-box'
+					boxSizing: 'border-box',
+					flexGrow: 1,
+					display: 'flex',
+					justifyContent: 'center',
+					maxWidth: 150
 				}
 			}
 		},
-		item: {
+		runItem: {
 			wrapper: {
 				width: '100%',
 				boxSizing: 'border-box',
-				//flexGrow: 1,
 				display: 'flex',
-				//justifyContent: 'space-between',
-				//alignItems: 'center',
-				color: '#7A7A7A',
+				color: '#ADADAD',
 				fontSize: 14
 			},
 			id: {
+				display: 'flex',
+				alignItems: 'center',
 				flexGrow: 1,
 				fontWeight: 'bold',
 				boxSizing: 'border-box',
@@ -19809,26 +19844,36 @@
 				paddingLeft: 20
 			},
 			user: {
+				display: 'flex',
+				alignItems: 'center',
 				flexGrow: 1,
 				fontSize: 12,
 				boxSizing: 'border-box',
 				width: 50
 			},
 			start: {
-				flexGrow: 1,
-				fontSize: 12,
-				letterSpacing: 2,
-				boxSizing: 'border-box',
-				width: 50
+				wrapper: {
+					display: 'flex',
+					alignItems: 'center',
+					flexGrow: 1,
+					fontSize: 12,
+					letterSpacing: 2,
+					boxSizing: 'border-box',
+					width: 50
+				},
+				icon: {
+					marginLeft: 7
+				}
 			},
 			status: {
 				wrapper: {
 					width: 50,
 					flexGrow: 1,
-					fontSize: 12,
+					fontSize: 13,
 					boxSizing: 'border-box',
 					display: 'flex',
-					alignItems: 'center'
+					alignItems: 'center',
+					paddingLeft: 10
 				},
 				text: {
 					marginLeft: 5
@@ -19839,7 +19884,110 @@
 					boxSizing: 'border-box',
 					display: 'flex',
 					justifyContent: 'space-around',
-					width: 300
+					width: 450,
+					height: 36,
+					position: 'relative'
+				},
+				background: {
+					wrapper: {
+						position: 'absolute',
+						zIndex: 0,
+						top: 0,
+						left: 0,
+						width: 450,
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-around'
+					},
+					circle: {
+						wrapper: {
+							flexGrow: 1,
+							display: 'flex',
+							justifyContent: 'center',
+							position: 'relative',
+							zIndex: 1
+						},
+						inner: {
+							borderRadius: 36,
+							height: 36,
+							width: 36,
+							background: '#E3E3E6'
+						}
+					},
+					line1: {
+						width: 150,
+						height: 10,
+						position: 'absolute',
+						top: 13,
+						left: 75,
+						background: '#E3E3E6',
+						zIndex: 0
+					},
+					line2: {
+						width: 150,
+						height: 10,
+						position: 'absolute',
+						top: 13,
+						left: 225,
+						background: '#E3E3E6',
+						zIndex: 0
+					}
+				},
+				status: {
+					wrapper: {
+						position: 'absolute',
+						zIndex: 1,
+						top: 4,
+						left: 0,
+						width: 450,
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-around'
+					},
+					circle: {
+						wrapper: {
+							flexGrow: 1,
+							display: 'flex',
+							justifyContent: 'center',
+							position: 'relative',
+							zIndex: 1
+						},
+						inner: {
+							borderRadius: 28,
+							height: 28,
+							width: 28,
+							background: '#E3E3E6',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center'
+						}
+					},
+					line1: {
+						width: 150,
+						height: 4,
+						position: 'absolute',
+						top: 12,
+						left: 75,
+						background: '#E3E3E6',
+						zIndex: 0,
+						display: 'none'
+					},
+					line2: {
+						width: 150,
+						height: 4,
+						position: 'absolute',
+						top: 12,
+						left: 225,
+						background: '#E3E3E6',
+						zIndex: 0,
+						display: 'none'
+					},
+					icon: {
+						position: 'relative',
+						top: 1,
+						fontSize: 16,
+						color: '#FFF'
+					}
 				}
 			}
 		}
@@ -19852,10 +20000,11 @@
 		start: 1397738575077,
 		status: 'pending',
 		build: {
-			status: 'failed',
-			end: 1
+			status: 'pending',
+			percentage: 0,
+			end: 0
 		},
-		data: {
+		unit: {
 			status: 'pending',
 			duration: 0,
 			approve: 0,
@@ -19877,10 +20026,11 @@
 		start: 1397731255077,
 		status: 'running',
 		build: {
-			status: 'failed',
+			status: 'running',
+			percentage: 70,
 			end: 1
 		},
-		data: {
+		unit: {
 			status: 'pending',
 			duration: 0,
 			approve: 0,
@@ -19902,22 +20052,23 @@
 		start: 1397727775077,
 		status: 'passed',
 		build: {
-			status: 'failed',
+			status: 'passed',
+			percentage: 100,
 			end: 1
 		},
-		data: {
-			status: 'pending',
+		unit: {
+			status: 'passed',
 			duration: 0,
 			approve: 0,
 			fail: 0,
-			percentage: 0
+			percentage: 88
 		},
 		functional: {
-			status: 'pending',
+			status: 'passed',
 			duration: 0,
 			approve: 0,
 			fail: 0,
-			percentage: 0
+			percentage: 98
 		}
 	}, {
 		id: 432461,
@@ -19928,9 +20079,10 @@
 		status: 'failed',
 		build: {
 			status: 'failed',
+			percentage: 0,
 			end: 1
 		},
-		data: {
+		unit: {
 			status: 'pending',
 			duration: 0,
 			approve: 0,
@@ -19953,9 +20105,10 @@
 		status: 'passed',
 		build: {
 			status: 'passed',
+			percentage: 100,
 			end: 1
 		},
-		data: {
+		unit: {
 			status: 'passed',
 			duration: 0,
 			approve: 0,
@@ -19978,9 +20131,10 @@
 		status: 'failed',
 		build: {
 			status: 'passed',
+			percentage: 100,
 			end: 1
 		},
-		data: {
+		unit: {
 			status: 'failed',
 			duration: 0,
 			approve: 0,
@@ -19996,42 +20150,171 @@
 		}
 	}];
 
-	var ItemPhase = (function (_React$Component) {
-		_inherits(ItemPhase, _React$Component);
+	var PhaseBackground = function PhaseBackground() {
+		return _react2.default.createElement(
+			'div',
+			{ style: styles.runItem.phase.background.wrapper },
+			_react2.default.createElement(
+				'div',
+				{ style: styles.runItem.phase.background.circle.wrapper },
+				_react2.default.createElement('div', { style: styles.runItem.phase.background.circle.inner })
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.runItem.phase.background.circle.wrapper },
+				_react2.default.createElement('div', { style: styles.runItem.phase.background.circle.inner })
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.runItem.phase.background.circle.wrapper },
+				_react2.default.createElement('div', { style: styles.runItem.phase.background.circle.inner })
+			),
+			_react2.default.createElement('div', { style: styles.runItem.phase.background.line1 }),
+			_react2.default.createElement('div', { style: styles.runItem.phase.background.line2 })
+		);
+	};
 
-		function ItemPhase() {
-			_classCallCheck(this, ItemPhase);
+	var ItemPhase = function ItemPhase(props) {
+		var content = null,
+		    circle1 = _react2.default.createElement('div', { style: styles.runItem.phase.status.circle.inner }),
+		    circle2 = circle1,
+		    circle3 = circle1,
+		    line1 = null,
+		    line2 = null;
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ItemPhase).apply(this, arguments));
+		// pending
+		if (props.item.status === 'pending') {
+			var myStyles = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
+			myStyles.background = colors.hex.pending;
+			circle1 = _react2.default.createElement(
+				'div',
+				{ style: myStyles },
+				_react2.default.createElement(Ellipsis, { color: '#FFF', size: '18' })
+			);
+		} else {
+			// build
+			var buildIcon = null,
+			    buildStyle = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
+			buildStyle.background = colors.hex[props.item.status];
+			if (props.item.build.status === 'failed') {
+				buildIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-exclamation' });
+			} else if (props.item.build.status === 'passed') {
+				buildIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-check' });
+			} else if (props.item.build.status === 'running') {
+				buildIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-refresh' });
+			} else {
+				buildStyle.background = '#E3E3E6';
+			}
+			circle1 = _react2.default.createElement(
+				'div',
+				{ style: buildStyle },
+				buildIcon
+			);
+
+			// unit
+			var unitIcon = null,
+			    unitStyle = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
+			unitStyle.background = colors.hex[props.item.status];
+			if (props.item.unit.status === 'failed') {
+				unitIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-exclamation' });
+			} else if (props.item.unit.status === 'passed') {
+				unitIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-check' });
+			} else if (props.item.unit.status === 'running') {
+				unitIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-refresh' });
+			} else {
+				unitStyle.background = '#E3E3E6';
+			}
+			circle2 = _react2.default.createElement(
+				'div',
+				{ style: unitStyle },
+				unitIcon
+			);
+
+			// functional
+			var functionalIcon = null,
+			    functionaltyle = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
+			functionaltyle.background = colors.hex[props.item.status];
+			if (props.item.functional.status === 'failed') {
+				functionalIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-exclamation' });
+			} else if (props.item.functional.status === 'passed') {
+				functionalIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-check' });
+			} else if (props.item.functional.status === 'running') {
+				functionalIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-refresh' });
+			} else {
+				functionaltyle.background = '#E3E3E6';
+			}
+			circle3 = _react2.default.createElement(
+				'div',
+				{ style: functionaltyle },
+				functionalIcon
+			);
+
+			// line 1
+			var line1Styles = JSON.parse(JSON.stringify(styles.runItem.phase.status.line1));
+			line1Styles.background = '/* On "top" */ repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(100,100,100,.3) 2px, rgba(100,100,100,.3) 5px ), ' + colors.hex[props.item.status];
+			switch (props.item.unit.status) {
+				case 'running':
+				case 'passed':
+				case 'failed':
+					line1Styles.display = 'block';
+					line1 = _react2.default.createElement('div', { style: line1Styles });
+					break;
+			}
+			if (props.item.build.status === 'running') {
+				line1Styles.display = 'block';
+				line1Styles.width = styles.runItem.phase.status.line1.width * (props.item.build.percentage / 100) + 'px';
+				line1 = _react2.default.createElement('div', { style: line1Styles });
+			}
+
+			// line 2
+			var line2Styles = JSON.parse(JSON.stringify(styles.runItem.phase.status.line2));
+			line2Styles.background = '/* On "top" */ repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(100,100,100,.3) 2px, rgba(100,100,100,.3) 5px ), ' + colors.hex[props.item.status];
+			switch (props.item.functional.status) {
+				case 'running':
+				// width
+
+				case 'passed':
+				case 'failed':
+					line2Styles.display = 'block';
+					line2 = _react2.default.createElement('div', { style: line2Styles });
+					break;
+			}
+			if (props.item.unit.status === 'running') {
+				line2Styles.display = 'block';
+				line2Styles.width = styles.runItem.phase.status.line2.width * (props.item.unit.percentage / 100) + 'px';
+				line2 = _react2.default.createElement('div', { style: line2Styles });
+			}
 		}
 
-		_createClass(ItemPhase, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ style: styles.item.phase.wrapper },
-					_react2.default.createElement(
-						'div',
-						{ style: styles.item.phase },
-						'build'
-					),
-					_react2.default.createElement(
-						'div',
-						{ style: styles.item.phase },
-						'unit'
-					),
-					_react2.default.createElement(
-						'div',
-						{ style: styles.item.phase },
-						'functional'
-					)
-				);
-			}
-		}]);
+		content = _react2.default.createElement(
+			'div',
+			{ style: styles.runItem.phase.status.wrapper },
+			_react2.default.createElement(
+				'div',
+				{ style: styles.runItem.phase.status.circle.wrapper },
+				circle1
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.runItem.phase.status.circle.wrapper },
+				circle2
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.runItem.phase.status.circle.wrapper },
+				circle3
+			),
+			line1,
+			line2
+		);
 
-		return ItemPhase;
-	})(_react2.default.Component);
+		return _react2.default.createElement(
+			'div',
+			{ style: styles.runItem.phase.wrapper },
+			_react2.default.createElement(PhaseBackground, null),
+			content
+		);
+	};
 
 	var ParsedDate = function ParsedDate(props) {
 		var date = new Date(props.time),
@@ -20043,17 +20326,13 @@
 		//
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.item.start },
+			{ style: styles.runItem.start.wrapper },
 			_react2.default.createElement(
 				'span',
 				null,
-				date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear() + ' '
+				date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear()
 			),
-			_react2.default.createElement(
-				'span',
-				null,
-				_react2.default.createElement('i', { className: 'fa fa-clock-o' })
-			),
+			_react2.default.createElement('i', { style: styles.runItem.start.icon, className: 'fa fa-clock-o' }),
 			_react2.default.createElement(
 				'span',
 				null,
@@ -20063,24 +20342,24 @@
 	};
 
 	var FormattedStatus = function FormattedStatus(props) {
-		var myStyles = JSON.parse(JSON.stringify(styles.item.status.wrapper)),
+		var myStyles = JSON.parse(JSON.stringify(styles.runItem.status.wrapper)),
 		    iconStyles = {
-			color: colors[props.item.status],
-			fontSize: 14
+			color: colors.hex[props.item.status],
+			fontSize: 13
 		},
-		    icon = _react2.default.createElement(Ellipsis, { color: colors[props.item.status], size: '14' });
-		myStyles.color = colors[props.item.status];
+		    icon = _react2.default.createElement(Ellipsis, { color: colors.hex[props.item.status], size: '14' });
+		myStyles.color = colors.hex[props.item.status];
 		myStyles.fontWeight = 'bold';
 		myStyles.textTransform = 'capitalize';
 		switch (props.item.status) {
 			case 'running':
-				icon = _react2.default.createElement('i', { className: 'fa fa-refresh' });
+				icon = _react2.default.createElement('i', { style: iconStyles, className: 'fa fa-refresh' });
 				break;
 			case 'failed':
-				icon = _react2.default.createElement('i', { className: 'fa fa-times-circle-o' });
+				icon = _react2.default.createElement('i', { style: iconStyles, className: 'fa fa-times-circle-o' });
 				break;
 			case 'passed':
-				icon = _react2.default.createElement('i', { className: 'fa fa-check-circle-o' });
+				icon = _react2.default.createElement('i', { style: iconStyles, className: 'fa fa-check-circle-o' });
 				break;
 		}
 		return _react2.default.createElement(
@@ -20089,7 +20368,7 @@
 			icon,
 			_react2.default.createElement(
 				'span',
-				{ style: styles.item.status.text },
+				{ style: styles.runItem.status.text },
 				props.item.status
 			)
 		);
@@ -20119,8 +20398,8 @@
 		);
 	};
 
-	var RunItem = (function (_React$Component2) {
-		_inherits(RunItem, _React$Component2);
+	var RunItem = (function (_React$Component) {
+		_inherits(RunItem, _React$Component);
 
 		function RunItem() {
 			_classCallCheck(this, RunItem);
@@ -20133,19 +20412,19 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ style: styles.item.wrapper },
+					{ style: styles.runItem.wrapper },
 					_react2.default.createElement(
 						'div',
-						{ style: styles.item.id },
+						{ style: styles.runItem.id },
 						this.props.item.id
 					),
 					_react2.default.createElement(
 						'div',
-						{ style: styles.item.user },
+						{ style: styles.runItem.user },
 						this.props.item.user.username
 					),
 					_react2.default.createElement(ParsedDate, { time: this.props.item.start }),
-					_react2.default.createElement(ItemPhase, null),
+					_react2.default.createElement(ItemPhase, { item: this.props.item }),
 					_react2.default.createElement(FormattedStatus, { item: this.props.item })
 				);
 			}
@@ -20156,8 +20435,54 @@
 
 	;
 
-	var List = (function (_React$Component3) {
-		_inherits(List, _React$Component3);
+	var Header = function Header() {
+		return _react2.default.createElement(
+			'div',
+			{ style: styles.header.wrapper },
+			_react2.default.createElement(
+				'div',
+				{ style: styles.header.id },
+				'Changelist'
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.header.item },
+				'Owner'
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.header.item },
+				'Time Started'
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.header.phase.wrapper },
+				_react2.default.createElement(
+					'div',
+					{ style: styles.header.phase.item },
+					'Build'
+				),
+				_react2.default.createElement(
+					'div',
+					{ style: styles.header.phase.item },
+					'Unit Test'
+				),
+				_react2.default.createElement(
+					'div',
+					{ style: styles.header.phase.item },
+					'Functional Test'
+				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.header.status },
+				'Status'
+			)
+		);
+	};
+
+	var List = (function (_React$Component2) {
+		_inherits(List, _React$Component2);
 
 		function List() {
 			_classCallCheck(this, List);
@@ -20171,59 +20496,13 @@
 				return _react2.default.createElement(
 					'div',
 					{ style: styles.wrapper },
+					_react2.default.createElement(Header, null),
 					_react2.default.createElement(
 						'ul',
-						{ style: styles.list },
-						_react2.default.createElement(
-							'li',
-							{ style: styles.listHeader, key: 'header' },
-							_react2.default.createElement(
-								'div',
-								{ style: styles.header.wrapper },
-								_react2.default.createElement(
-									'div',
-									{ style: styles.header.firstItem },
-									'Changelist'
-								),
-								_react2.default.createElement(
-									'div',
-									{ style: styles.header.item },
-									'Owner'
-								),
-								_react2.default.createElement(
-									'div',
-									{ style: styles.header.item },
-									'Time Started'
-								),
-								_react2.default.createElement(
-									'div',
-									{ style: styles.header.phase.wrapper },
-									_react2.default.createElement(
-										'div',
-										{ style: styles.header.phase.item },
-										'Build'
-									),
-									_react2.default.createElement(
-										'div',
-										{ style: styles.header.phase.item },
-										'Unit Test'
-									),
-									_react2.default.createElement(
-										'div',
-										{ style: styles.header.phase.item },
-										'Functional Test'
-									)
-								),
-								_react2.default.createElement(
-									'div',
-									{ style: styles.header.item },
-									'Status'
-								)
-							)
-						),
+						{ style: styles.list.wrapper },
 						mockData.map(function (item, index) {
-							var myStyles = JSON.parse(JSON.stringify(styles.listItem)),
-							    myColor = colors[item.status];
+							var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
+							    myColor = colors.hex[item.status];
 							myStyles.borderLeft = '5px solid ' + myColor;
 							return _react2.default.createElement(
 								'li',
