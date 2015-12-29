@@ -19673,11 +19673,18 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _runs = __webpack_require__(161);
+
+	var _runs2 = _interopRequireDefault(_runs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var styles = {
 		app: {
-			wrapper: {}
+			wrapper: {
+				background: '#F2F2F2',
+				fontFamily: 'Sans-serif'
+			}
 		}
 	};
 
@@ -19685,9 +19692,556 @@
 		return _react2.default.createElement(
 			'div',
 			{ style: styles.app.wrapper },
-			'App'
+			_react2.default.createElement(_runs2.default, null)
 		);
 	};
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var colors = {
+		pending: '#f7ab59',
+		failed: '#eb5463',
+		passed: '#1bb392',
+		running: '#1d84c4'
+	},
+	    styles = {
+		wrapper: {
+			paddingTop: '5%',
+			paddingBottom: '7%',
+			maxWidth: '85%',
+			margin: 'auto'
+		},
+		list: {
+			listStyle: 'none',
+			padding: 0,
+			margin: 0,
+			borderTop: '1px solid #E3E3E3',
+			borderBottom: '1px solid #E3E3E3',
+			background: '#FFF'
+		},
+		listHeader: {
+			borderLeft: '5px solid #D1D1D1',
+			borderBottom: '1px solid #E3E3E3',
+			display: 'flex',
+			alignItems: 'center',
+			height: 40
+		},
+		listItem: {
+			borderLeft: '5px solid #D1D1D1',
+			borderBottom: '1px solid #E3E3E3',
+			display: 'flex',
+			alignItems: 'center',
+			minHeight: 60
+		},
+		header: {
+			wrapper: {
+				width: '100%',
+				display: 'flex',
+				boxSizing: 'border-box',
+				flexGrow: 1,
+				alignItems: 'center',
+				color: '#454545',
+				fontSize: 14
+			},
+			item: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				flexGrow: 1,
+				width: 50
+			},
+			firstItem: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				flexGrow: 1,
+				width: 50,
+				paddingLeft: 20
+			},
+			phase: {
+				wrapper: {
+					boxSizing: 'border-box',
+					display: 'flex',
+					justifyContent: 'space-around',
+					width: 300
+				},
+				item: {
+					boxSizing: 'border-box'
+				}
+			}
+		},
+		item: {
+			wrapper: {
+				width: '100%',
+				boxSizing: 'border-box',
+				//flexGrow: 1,
+				display: 'flex',
+				//justifyContent: 'space-between',
+				//alignItems: 'center',
+				color: '#7A7A7A',
+				fontSize: 14
+			},
+			id: {
+				flexGrow: 1,
+				fontWeight: 'bold',
+				boxSizing: 'border-box',
+				width: 50,
+				paddingLeft: 20
+			},
+			user: {
+				flexGrow: 1,
+				fontSize: 12,
+				boxSizing: 'border-box',
+				width: 50
+			},
+			start: {
+				flexGrow: 1,
+				fontSize: 12,
+				letterSpacing: 2,
+				boxSizing: 'border-box',
+				width: 50
+			},
+			status: {
+				wrapper: {
+					width: 50,
+					flexGrow: 1,
+					fontSize: 12,
+					boxSizing: 'border-box',
+					display: 'flex',
+					alignItems: 'center'
+				},
+				text: {
+					marginLeft: 5
+				}
+			},
+			phase: {
+				wrapper: {
+					boxSizing: 'border-box',
+					display: 'flex',
+					justifyContent: 'space-around',
+					width: 300
+				}
+			}
+		}
+	},
+	    mockData = [{
+		id: 432464,
+		user: {
+			username: 'jTuck'
+		},
+		start: 1397738575077,
+		status: 'pending',
+		build: {
+			status: 'failed',
+			end: 1
+		},
+		data: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		},
+		functional: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		}
+	}, {
+		id: 432463,
+		user: {
+			username: 'Dora'
+		},
+		start: 1397731255077,
+		status: 'running',
+		build: {
+			status: 'failed',
+			end: 1
+		},
+		data: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		},
+		functional: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		}
+	}, {
+		id: 432462,
+		user: {
+			username: 'Samy'
+		},
+		start: 1397727775077,
+		status: 'passed',
+		build: {
+			status: 'failed',
+			end: 1
+		},
+		data: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		},
+		functional: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		}
+	}, {
+		id: 432461,
+		user: {
+			username: 'jTuck'
+		},
+		start: 1397719735077,
+		status: 'failed',
+		build: {
+			status: 'failed',
+			end: 1
+		},
+		data: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		},
+		functional: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		}
+	}, {
+		id: 432460,
+		user: {
+			username: 'Samy'
+		},
+		start: 1397715295077,
+		status: 'passed',
+		build: {
+			status: 'passed',
+			end: 1
+		},
+		data: {
+			status: 'passed',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		},
+		functional: {
+			status: 'passed',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		}
+	}, {
+		id: 432459,
+		user: {
+			username: 'Dora'
+		},
+		start: 1397708095077,
+		status: 'failed',
+		build: {
+			status: 'passed',
+			end: 1
+		},
+		data: {
+			status: 'failed',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		},
+		functional: {
+			status: 'pending',
+			duration: 0,
+			approve: 0,
+			fail: 0,
+			percentage: 0
+		}
+	}];
+
+	var ItemPhase = (function (_React$Component) {
+		_inherits(ItemPhase, _React$Component);
+
+		function ItemPhase() {
+			_classCallCheck(this, ItemPhase);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ItemPhase).apply(this, arguments));
+		}
+
+		_createClass(ItemPhase, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ style: styles.item.phase.wrapper },
+					_react2.default.createElement(
+						'div',
+						{ style: styles.item.phase },
+						'build'
+					),
+					_react2.default.createElement(
+						'div',
+						{ style: styles.item.phase },
+						'unit'
+					),
+					_react2.default.createElement(
+						'div',
+						{ style: styles.item.phase },
+						'functional'
+					)
+				);
+			}
+		}]);
+
+		return ItemPhase;
+	})(_react2.default.Component);
+
+	var ParsedDate = function ParsedDate(props) {
+		var date = new Date(props.time),
+		    hours = date.getHours(),
+		    strTime = hours >= 12 ? 'pm' : 'am';
+		// the hour '0' should be '12'
+		hours = hours % 12;
+		hours = hours ? hours : 12;
+		//
+		return _react2.default.createElement(
+			'div',
+			{ style: styles.item.start },
+			_react2.default.createElement(
+				'span',
+				null,
+				date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear() + ' '
+			),
+			_react2.default.createElement(
+				'span',
+				null,
+				_react2.default.createElement('i', { className: 'fa fa-clock-o' })
+			),
+			_react2.default.createElement(
+				'span',
+				null,
+				date.getHours() + ':' + date.getMinutes() + ' ' + strTime
+			)
+		);
+	};
+
+	var FormattedStatus = function FormattedStatus(props) {
+		var myStyles = JSON.parse(JSON.stringify(styles.item.status.wrapper)),
+		    iconStyles = {
+			color: colors[props.item.status],
+			fontSize: 14
+		},
+		    icon = _react2.default.createElement(Ellipsis, { color: colors[props.item.status], size: '14' });
+		myStyles.color = colors[props.item.status];
+		myStyles.fontWeight = 'bold';
+		myStyles.textTransform = 'capitalize';
+		switch (props.item.status) {
+			case 'running':
+				icon = _react2.default.createElement('i', { className: 'fa fa-refresh' });
+				break;
+			case 'failed':
+				icon = _react2.default.createElement('i', { className: 'fa fa-times-circle-o' });
+				break;
+			case 'passed':
+				icon = _react2.default.createElement('i', { className: 'fa fa-check-circle-o' });
+				break;
+		}
+		return _react2.default.createElement(
+			'div',
+			{ style: myStyles },
+			icon,
+			_react2.default.createElement(
+				'span',
+				{ style: styles.item.status.text },
+				props.item.status
+			)
+		);
+	};
+
+	var Ellipsis = function Ellipsis(props) {
+		var myStyles = {
+			color: props.color || '#000',
+			borderRadius: props.size || 30,
+			width: props.size || 30,
+			height: props.size || 30,
+			border: '2px solid ' + (props.color || '#000'),
+			display: 'inline-flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			boxSizing: 'border-box',
+			fontSize: props.fontSize || 10,
+			paddingBottom: props.paddingBottom || props.size / 2.5 || 6,
+			userSelect: 'none',
+			WebkitUserSelect: 'none',
+			cursor: 'default'
+		};
+		return _react2.default.createElement(
+			'span',
+			{ style: myStyles },
+			'...'
+		);
+	};
+
+	var RunItem = (function (_React$Component2) {
+		_inherits(RunItem, _React$Component2);
+
+		function RunItem() {
+			_classCallCheck(this, RunItem);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(RunItem).apply(this, arguments));
+		}
+
+		_createClass(RunItem, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ style: styles.item.wrapper },
+					_react2.default.createElement(
+						'div',
+						{ style: styles.item.id },
+						this.props.item.id
+					),
+					_react2.default.createElement(
+						'div',
+						{ style: styles.item.user },
+						this.props.item.user.username
+					),
+					_react2.default.createElement(ParsedDate, { time: this.props.item.start }),
+					_react2.default.createElement(ItemPhase, null),
+					_react2.default.createElement(FormattedStatus, { item: this.props.item })
+				);
+			}
+		}]);
+
+		return RunItem;
+	})(_react2.default.Component);
+
+	;
+
+	var List = (function (_React$Component3) {
+		_inherits(List, _React$Component3);
+
+		function List() {
+			_classCallCheck(this, List);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+		}
+
+		_createClass(List, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ style: styles.wrapper },
+					_react2.default.createElement(
+						'ul',
+						{ style: styles.list },
+						_react2.default.createElement(
+							'li',
+							{ style: styles.listHeader, key: 'header' },
+							_react2.default.createElement(
+								'div',
+								{ style: styles.header.wrapper },
+								_react2.default.createElement(
+									'div',
+									{ style: styles.header.firstItem },
+									'Changelist'
+								),
+								_react2.default.createElement(
+									'div',
+									{ style: styles.header.item },
+									'Owner'
+								),
+								_react2.default.createElement(
+									'div',
+									{ style: styles.header.item },
+									'Time Started'
+								),
+								_react2.default.createElement(
+									'div',
+									{ style: styles.header.phase.wrapper },
+									_react2.default.createElement(
+										'div',
+										{ style: styles.header.phase.item },
+										'Build'
+									),
+									_react2.default.createElement(
+										'div',
+										{ style: styles.header.phase.item },
+										'Unit Test'
+									),
+									_react2.default.createElement(
+										'div',
+										{ style: styles.header.phase.item },
+										'Functional Test'
+									)
+								),
+								_react2.default.createElement(
+									'div',
+									{ style: styles.header.item },
+									'Status'
+								)
+							)
+						),
+						mockData.map(function (item, index) {
+							var myStyles = JSON.parse(JSON.stringify(styles.listItem)),
+							    myColor = colors[item.status];
+							myStyles.borderLeft = '5px solid ' + myColor;
+							return _react2.default.createElement(
+								'li',
+								{ style: myStyles, key: index },
+								_react2.default.createElement(RunItem, { item: item })
+							);
+						})
+					)
+				);
+			}
+		}]);
+
+		return List;
+	})(_react2.default.Component);
+
+	;
+
+	exports.default = List;
 
 /***/ }
 /******/ ]);
