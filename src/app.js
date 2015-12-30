@@ -1,7 +1,8 @@
 import React from 'react';
-import Runs from './runs.js';
+import Runs from './components/runs.js';
+import mockData from './utils/mockData.js';
 
-var styles = {
+const styles = {
 	app: {
 		wrapper: {
 			background: '#F2F2F2',
@@ -14,7 +15,7 @@ var styles = {
 export default (props) => {
 	return (
 		<div style={styles.app.wrapper}>
-			<Runs />
+			<Runs data={mockData} />
 		</div>
 	);
 };

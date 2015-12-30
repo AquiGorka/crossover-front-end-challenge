@@ -19673,9 +19673,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _runs = __webpack_require__(161);
+	var _runs = __webpack_require__(174);
 
 	var _runs2 = _interopRequireDefault(_runs);
+
+	var _mockData = __webpack_require__(167);
+
+	var _mockData2 = _interopRequireDefault(_mockData);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19693,35 +19697,25 @@
 		return _react2.default.createElement(
 			'div',
 			{ style: styles.app.wrapper },
-			_react2.default.createElement(_runs2.default, null)
+			_react2.default.createElement(_runs2.default, { data: _mockData2.default })
 		);
 	};
 
 /***/ },
-/* 161 */
-/***/ function(module, exports, __webpack_require__) {
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */
+/***/ function(module, exports) {
 
 	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var colors = {
+	exports.default = {
 		hex: {
 			pending: '#f7ab59',
 			failed: '#eb5463',
@@ -19750,542 +19744,18 @@
 				b: 196
 			}
 		}
-	},
-	    styles = {
-		wrapper: {
-			paddingTop: '5%',
-			paddingBottom: '7%',
-			maxWidth: '85%',
-			margin: 'auto',
-			minWidth: 1100
-		},
-		list: {
-			wrapper: {
-				listStyle: 'none',
-				padding: 0,
-				margin: 0,
-				borderTop: '1px solid #E3E3E6',
-				borderBottom: '1px solid #E3E3E6',
-				background: '#FFF'
-			},
-			item: {
-				borderLeft: '7px solid #D1D1D1',
-				borderBottom: '1px solid #E3E3E6',
-				borderRight: '1px solid #E3E3E6',
-				display: 'flex',
-				alignItems: 'center',
-				minHeight: 60
-			}
-		},
-		header: {
-			wrapper: {
-				border: '1px solid #E3E3E6',
-				borderLeft: '7px solid #D1D1D1',
-				borderBottom: 'none',
-				background: '#FFF',
-				height: 40,
-				display: 'flex',
-				boxSizing: 'border-box',
-				flexGrow: 1,
-				alignItems: 'center',
-				color: '#858585',
-				fontSize: 14,
-				fontWeight: 'bold'
-			},
-			id: {
-				display: 'flex',
-				alignItems: 'center',
-				flexGrow: 1,
-				boxSizing: 'border-box',
-				minWidth: 110,
-				paddingLeft: 20
-			},
-			user: {
-				boxSizing: 'border-box',
-				display: 'flex',
-				flexGrow: 1,
-				minWidth: 80
-			},
-			start: {
-				boxSizing: 'border-box',
-				display: 'flex',
-				flexGrow: 1,
-				minWidth: 180
-			},
-			status: {
-				boxSizing: 'border-box',
-				display: 'flex',
-				flexGrow: 1,
-				width: 150,
-				maxWidth: 150,
-				justifyContent: 'center'
-			},
-			phase: {
-				wrapper: {
-					boxSizing: 'border-box',
-					display: 'flex',
-					justifyContent: 'space-around',
-					width: 450
-				},
-				item: {
-					boxSizing: 'border-box',
-					flexGrow: 1,
-					display: 'flex',
-					justifyContent: 'center',
-					maxWidth: 150
-				}
-			}
-		},
-		runItem: {
-			wrapper: {
-				flexGrow: 1,
-				boxSizing: 'border-box',
-				display: 'flex',
-				color: '#ADADAD',
-				fontSize: 14
-			},
-			id: {
-				display: 'flex',
-				alignItems: 'center',
-				flexGrow: 1,
-				fontWeight: 'bold',
-				boxSizing: 'border-box',
-				minWidth: 110,
-				paddingLeft: 20
-			},
-			user: {
-				display: 'flex',
-				justifyContent: 'flex-start',
-				alignItems: 'center',
-				flexGrow: 1,
-				fontSize: 12,
-				boxSizing: 'border-box',
-				minWidth: 80
-			},
-			start: {
-				wrapper: {
-					display: 'flex',
-					alignItems: 'center',
-					flexGrow: 1,
-					fontSize: 12,
-					letterSpacing: 2,
-					boxSizing: 'border-box',
-					minWidth: 180
-				},
-				icon: {
-					marginLeft: 7
-				}
-			},
-			status: {
-				wrapper: {
-					width: 150,
-					maxWidth: 150,
-					flexGrow: 1,
-					fontSize: 12,
-					boxSizing: 'border-box',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					fontWeight: 'bold',
-					textTransform: 'capitalize'
-				},
-				text: {
-					marginLeft: 5
-				},
-				icon: {
-					fontSize: 13
-				}
-			},
-			extendedStatus: {
-				wrapper: {
-					boxSizing: 'border-box',
-					width: 150,
-					maxWidth: 150,
-					flexGrow: 1,
-					fontSize: 12,
-					boxSizing: 'border-box',
-					display: 'flex',
-					alignItems: 'center',
-					paddingLeft: 10,
-					background: '#F2F2F2',
-					borderLeft: '1px solid #E3E3E6',
-					fontSize: 20,
-					justifyContent: 'center'
-				},
-				text: {
-					marginLeft: 5
-				},
-				icon: {
-					fontSize: 26
-				},
-				status: {
-					textAlign: 'right'
-				}
-			},
-			phase: {
-				wrapper: {
-					boxSizing: 'border-box',
-					display: 'flex',
-					justifyContent: 'space-around',
-					width: 450,
-					height: 36,
-					position: 'relative'
-				},
-				background: {
-					wrapper: {
-						position: 'absolute',
-						zIndex: 0,
-						top: 0,
-						left: 0,
-						width: 450,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'space-around'
-					},
-					circle: {
-						wrapper: {
-							flexGrow: 1,
-							display: 'flex',
-							justifyContent: 'center',
-							position: 'relative',
-							zIndex: 1
-						},
-						inner: {
-							borderRadius: 36,
-							height: 36,
-							width: 36,
-							background: '#E3E3E6'
-						}
-					},
-					line1: {
-						width: 150,
-						height: 10,
-						position: 'absolute',
-						top: 13,
-						left: 75,
-						background: '#E3E3E6',
-						zIndex: 0
-					},
-					line2: {
-						width: 150,
-						height: 10,
-						position: 'absolute',
-						top: 13,
-						left: 225,
-						background: '#E3E3E6',
-						zIndex: 0
-					}
-				},
-				status: {
-					wrapper: {
-						position: 'absolute',
-						zIndex: 1,
-						top: 4,
-						left: 0,
-						width: 450,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'space-around'
-					},
-					circle: {
-						wrapper: {
-							flexGrow: 1,
-							display: 'flex',
-							justifyContent: 'center',
-							position: 'relative',
-							zIndex: 1
-						},
-						inner: {
-							borderRadius: 28,
-							height: 28,
-							width: 28,
-							background: '#E3E3E6',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center'
-						}
-					},
-					line1: {
-						width: 150,
-						height: 4,
-						position: 'absolute',
-						top: 12,
-						left: 75,
-						background: '#E3E3E6',
-						zIndex: 0,
-						display: 'none',
-						borderRadius: 4
-					},
-					line2: {
-						width: 150,
-						height: 4,
-						position: 'absolute',
-						top: 12,
-						left: 225,
-						background: '#E3E3E6',
-						zIndex: 0,
-						display: 'none',
-						borderRadius: 4
-					},
-					icon: {
-						position: 'relative',
-						top: 1,
-						fontSize: 16,
-						color: '#FFF'
-					}
-				}
-			},
-			extended: {
-				wrapper: {
-					flexGrow: 1,
-					display: 'flex',
-					flexDirection: 'column'
-				},
-				inner: {
-					flexGrow: 1,
-					display: 'flex',
-					padding: '10px 0'
-				},
-				header: {
-					flexGrow: 1,
-					display: 'flex'
-				}
-			}
-		},
-		extended: {
-			wrapper: {
-				boxSizing: 'border-box',
-				padding: '10px 0',
-				borderTop: '1px solid #E3E3E6',
-				display: 'none',
-				justifyContent: 'flex-start'
-			},
-			build: {
-				wrapper: {
-					boxSizing: 'border-box',
-					flexGrow: 1,
-					width: '33.333333%',
-					display: 'flex',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'flex-start'
-				},
-				item: {
-					flexGrow: 1,
-					display: 'flex',
-					alignItems: 'center',
-					flexDirection: 'column'
-				},
-				build: {
-					title: {
-						fontSize: 13,
-						fontWeight: 'bold'
-					},
-					time: {
-						marginTop: 5,
-						fontSize: 11,
-						fontWeight: 'bold'
-					}
-				},
-				link: {
-					cursor: 'pointer',
-					color: '#1D8AC4',
-					fontSize: 11,
-					fontWeight: 'bold',
-					textDecoration: 'underline'
-				},
-				text: {
-					color: '#E3E3E6',
-					fontSize: 11,
-					fontWeight: 'bold',
-					textDecoration: 'underline'
-				},
-				folder: {
-					wrapper: {
-						position: 'relative',
-						height: 40,
-						width: 40
+	};
 
-					},
-					folder: {
-						fontSize: 40,
-						position: 'absolute',
-						zIndex: 0
-					},
-					icon: {
-						fontSize: 20,
-						position: 'absolute',
-						zIndex: 1,
-						top: 11,
-						left: 9
-					}
-				}
-			},
-			unit: {
-				wrapper: {
-					boxSizing: 'border-box',
-					padding: '0 10px',
-					flexGrow: 1,
-					width: '33.333333%',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'flex-start'
-				},
-				inner: {
-					boxSizing: 'border-box',
-					padding: '0 10px',
-					flexDirection: 'column'
-				},
-				title: {
-					fontSize: 14
-				},
-				label: {
-					marginTop: 5,
-					fontSize: 11,
-					fontWeight: 'bold',
-					display: 'none'
-				},
-				percentage: {
-					display: 'inline-block',
-					marginTop: 5,
-					color: '#BFBFBF',
-					fontWeight: 'bold',
-					fontSize: 20
-				},
-				icon: {
-					marginLeft: 3,
-					fontSize: 14
-				},
-				cant: {
-					color: '#eb5463',
-					fontSize: 16,
-					position: 'relative',
-					top: 2
-				},
-				text: {
-					marginLeft: 15,
-					color: '#454545',
-					fontSize: 13
-				}
-			},
-			functional: {
-				wrapper: {
-					boxSizing: 'border-box',
-					padding: '0 10px',
-					flexGrow: 1,
-					width: '33.333333%',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'flex-start'
-				},
-				inner: {
-					boxSizing: 'border-box',
-					padding: '0 10px',
-					flexDirection: 'column'
-				},
-				title: {
-					fontSize: 14
-				},
-				label: {
-					marginTop: 5,
-					fontSize: 11,
-					fontWeight: 'bold',
-					display: 'none'
-				},
-				percentage: {
-					display: 'inline-block',
-					marginTop: 5,
-					color: '#BFBFBF',
-					fontWeight: 'bold',
-					fontSize: 20
-				},
-				icon: {
-					marginLeft: 3,
-					fontSize: 14
-				},
-				cant: {
-					color: '#eb5463',
-					fontSize: 16,
-					position: 'relative',
-					top: 2
-				},
-				text: {
-					marginLeft: 15,
-					color: '#454545',
-					fontSize: 13
-				}
-			},
-			pie: {
-				wrapper: {
-					width: 50,
-					height: 50,
-					position: 'relative'
-				},
-				one: {
-					position: 'relative',
-					zIndex: 0,
-					width: '100%',
-					height: '100%',
-					borderRadius: '50%',
-					background: '#1bb392',
-					display: 'inline-block',
-					lineHeight: '50px',
-					backgroundImage: 'linear-gradient(to right, transparent 50%, #f7ab59 0)',
-					color: 'transparent',
-					textAlign: 'center'
-				},
-				two: {
-					position: 'absolute',
-					zIndex: 1,
-					top: 0,
-					left: 0,
-					marginLeft: '50%',
-					height: '100%',
-					width: '50%',
-					borderRadius: '0 100% 100% 0 / 50%',
-					backgroundColor: 'inherit',
-					transformOrigin: 'left',
-					background: '#1bb392'
-				}
-			},
-			graph: {
-				wrapper: {
-					display: 'flex'
-				},
-				inner: {
-					paddingLeft: 10,
-					display: 'flex',
-					flexDirection: 'column',
-					fontSize: 11
-				},
-				passed: {
-					display: 'inline-block',
-					height: 7,
-					width: 7,
-					background: '#1bb392',
-					marginRight: 3
-				},
-				failed: {
-					display: 'inline-block',
-					height: 7,
-					width: 7,
-					background: '#f7ab59',
-					marginRight: 3
-				}
-			},
-			separator: {
-				color: '#E3E3E6',
-				display: 'flex',
-				flexGrow: 1,
-				width: 10,
-				justifyContent: 'center',
-				alignItems: 'center',
-				cursor: 'default',
-				fontSize: 18
-			}
-		}
-	},
-	    mockData = [{
+/***/ },
+/* 167 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = [{
 		id: 432464,
 		user: {
 			username: 'jTuck'
@@ -20342,15 +19812,15 @@
 		unit: {
 			status: 'pending',
 			duration: 0,
-			passed: 342,
-			failed: 3,
+			passed: 100,
+			failed: 10,
 			percentage: 0
 		},
 		functional: {
 			status: 'pending',
 			duration: 0,
-			passed: 342,
-			failed: 3,
+			passed: 1000,
+			failed: 100,
 			percentage: 0
 		}
 	}, {
@@ -20376,16 +19846,16 @@
 		unit: {
 			status: 'passed',
 			duration: 0,
-			passed: 342,
-			failed: 3,
-			percentage: 88
+			passed: 1000,
+			failed: 50,
+			percentage: 78
 		},
 		functional: {
 			status: 'passed',
 			duration: 0,
-			passed: 342,
-			failed: 3,
-			percentage: 98
+			passed: 1000,
+			failed: 300,
+			percentage: 90
 		}
 	}, {
 		id: 432461,
@@ -20491,33 +19961,350 @@
 		}
 	}];
 
-	var PhaseBackground = function PhaseBackground(props) {
-		return _react2.default.createElement(
-			'div',
-			{ style: styles.runItem.phase.background.wrapper },
-			_react2.default.createElement(
-				'div',
-				{ style: styles.runItem.phase.background.circle.wrapper },
-				_react2.default.createElement('div', { style: styles.runItem.phase.background.circle.inner })
-			),
-			_react2.default.createElement(
-				'div',
-				{ style: styles.runItem.phase.background.circle.wrapper },
-				_react2.default.createElement('div', { style: styles.runItem.phase.background.circle.inner })
-			),
-			_react2.default.createElement(
-				'div',
-				{ style: styles.runItem.phase.background.circle.wrapper },
-				_react2.default.createElement('div', { style: styles.runItem.phase.background.circle.inner })
-			),
-			_react2.default.createElement('div', { style: styles.runItem.phase.background.line1 }),
-			_react2.default.createElement('div', { style: styles.runItem.phase.background.line2 })
-		);
+/***/ },
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _item = __webpack_require__(175);
+
+	var _item2 = _interopRequireDefault(_item);
+
+	var _header = __webpack_require__(178);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _colors = __webpack_require__(166);
+
+	var _colors2 = _interopRequireDefault(_colors);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var styles = {
+		wrapper: {
+			paddingTop: '5%',
+			paddingBottom: '7%',
+			maxWidth: '85%',
+			margin: 'auto',
+			minWidth: 1100
+		},
+		list: {
+			wrapper: {
+				listStyle: 'none',
+				padding: 0,
+				margin: 0,
+				borderTop: '1px solid #E3E3E6',
+				borderBottom: '1px solid #E3E3E6',
+				background: '#FFF'
+			},
+			item: {
+				borderLeft: '7px solid #D1D1D1',
+				borderBottom: '1px solid #E3E3E6',
+				borderRight: '1px solid #E3E3E6',
+				display: 'flex',
+				alignItems: 'center',
+				minHeight: 60
+			}
+		}
+	};
+
+	var List = (function (_React$Component) {
+		_inherits(List, _React$Component);
+
+		function List() {
+			_classCallCheck(this, List);
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this));
+
+			_this.state = {
+				extendedIndex: -1
+			};
+			return _this;
+		}
+
+		_createClass(List, [{
+			key: 'onExpand',
+			value: function onExpand(index) {
+				if (this.state.extendedIndex === index) {
+					index = -1;
+				}
+				this.setState({
+					extendedIndex: index
+				});
+			}
+			//
+
+		}, {
+			key: 'render',
+			value: function render() {
+				var _this2 = this;
+
+				var data = this.props.data.sort(function (a, b) {
+					return b.start - a.start;
+				});
+				return _react2.default.createElement(
+					'div',
+					{ style: styles.wrapper },
+					_react2.default.createElement(_header2.default, null),
+					_react2.default.createElement(
+						'ul',
+						{ style: styles.list.wrapper },
+						data.map(function (item, index) {
+							var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
+							    myColor = _colors2.default.hex[item.status];
+							if (_this2.state.extendedIndex !== index) {
+								myStyles.borderLeft = '7px solid ' + myColor;
+							}
+							return _react2.default.createElement(
+								'li',
+								{ style: myStyles, key: index },
+								_react2.default.createElement(_item2.default, { item: item, onExpand: function onExpand() {
+										_this2.onExpand(index);
+									}, expand: _this2.state.extendedIndex === index })
+							);
+						})
+					)
+				);
+			}
+		}]);
+
+		return List;
+	})(_react2.default.Component);
+
+	;
+
+	exports.default = List;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _colors = __webpack_require__(166);
+
+	var _colors2 = _interopRequireDefault(_colors);
+
+	var _phaseBackground = __webpack_require__(176);
+
+	var _phaseBackground2 = _interopRequireDefault(_phaseBackground);
+
+	var _extended = __webpack_require__(177);
+
+	var _extended2 = _interopRequireDefault(_extended);
+
+	var _ellipsis = __webpack_require__(179);
+
+	var _ellipsis2 = _interopRequireDefault(_ellipsis);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var styles = {
+		wrapper: {
+			flexGrow: 1,
+			boxSizing: 'border-box',
+			display: 'flex',
+			color: '#ADADAD',
+			fontSize: 14
+		},
+		id: {
+			display: 'flex',
+			alignItems: 'center',
+			flexGrow: 1,
+			fontWeight: 'bold',
+			boxSizing: 'border-box',
+			minWidth: 110,
+			paddingLeft: 20
+		},
+		user: {
+			display: 'flex',
+			justifyContent: 'flex-start',
+			alignItems: 'center',
+			flexGrow: 1,
+			fontSize: 12,
+			boxSizing: 'border-box',
+			minWidth: 80
+		},
+		start: {
+			wrapper: {
+				display: 'flex',
+				alignItems: 'center',
+				flexGrow: 1,
+				fontSize: 12,
+				letterSpacing: 2,
+				boxSizing: 'border-box',
+				minWidth: 180
+			},
+			icon: {
+				marginLeft: 7
+			}
+		},
+		status: {
+			wrapper: {
+				width: 150,
+				maxWidth: 150,
+				flexGrow: 1,
+				fontSize: 12,
+				boxSizing: 'border-box',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				fontWeight: 'bold',
+				textTransform: 'capitalize'
+			},
+			text: {
+				marginLeft: 5
+			},
+			icon: {
+				fontSize: 13
+			}
+		},
+		extendedStatus: {
+			wrapper: {
+				boxSizing: 'border-box',
+				width: 150,
+				maxWidth: 150,
+				flexGrow: 1,
+				fontSize: 12,
+				boxSizing: 'border-box',
+				display: 'flex',
+				alignItems: 'center',
+				paddingLeft: 10,
+				background: '#F2F2F2',
+				borderLeft: '1px solid #E3E3E6',
+				fontSize: 20,
+				justifyContent: 'center'
+			},
+			text: {
+				marginLeft: 5
+			},
+			icon: {
+				fontSize: 26
+			},
+			status: {
+				textAlign: 'right'
+			}
+		},
+		phase: {
+			wrapper: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				justifyContent: 'space-around',
+				width: 450,
+				height: 36,
+				position: 'relative'
+			},
+			status: {
+				wrapper: {
+					position: 'absolute',
+					zIndex: 1,
+					top: 4,
+					left: 0,
+					width: 450,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'space-around'
+				},
+				circle: {
+					wrapper: {
+						flexGrow: 1,
+						display: 'flex',
+						justifyContent: 'center',
+						position: 'relative',
+						zIndex: 1
+					},
+					inner: {
+						borderRadius: 28,
+						height: 28,
+						width: 28,
+						background: '#E3E3E6',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center'
+					}
+				},
+				line1: {
+					width: 150,
+					height: 4,
+					position: 'absolute',
+					top: 12,
+					left: 75,
+					background: '#E3E3E6',
+					zIndex: 0,
+					display: 'none',
+					borderRadius: 4
+				},
+				line2: {
+					width: 150,
+					height: 4,
+					position: 'absolute',
+					top: 12,
+					left: 225,
+					background: '#E3E3E6',
+					zIndex: 0,
+					display: 'none',
+					borderRadius: 4
+				},
+				icon: {
+					position: 'relative',
+					top: 1,
+					fontSize: 16,
+					color: '#FFF'
+				}
+			}
+		},
+		extended: {
+			wrapper: {
+				flexGrow: 1,
+				display: 'flex',
+				flexDirection: 'column'
+			},
+			inner: {
+				flexGrow: 1,
+				display: 'flex',
+				padding: '10px 0'
+			},
+			header: {
+				flexGrow: 1,
+				display: 'flex'
+			}
+		}
 	};
 
 	var ItemPhase = function ItemPhase(props) {
 		var content = null,
-		    circle1 = _react2.default.createElement('div', { style: styles.runItem.phase.status.circle.inner }),
+		    circle1 = _react2.default.createElement('div', { style: styles.phase.status.circle.inner }),
 		    circle2 = circle1,
 		    circle3 = circle1,
 		    line1 = null,
@@ -20525,24 +20312,24 @@
 
 		// pending
 		if (props.item.status === 'pending') {
-			var myStyles = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
-			myStyles.background = colors.hex.pending;
+			var myStyles = JSON.parse(JSON.stringify(styles.phase.status.circle.inner));
+			myStyles.background = _colors2.default.hex.pending;
 			circle1 = _react2.default.createElement(
 				'div',
 				{ style: myStyles },
-				_react2.default.createElement(Ellipsis, { color: '#FFF', size: '18' })
+				_react2.default.createElement(_ellipsis2.default, { color: '#FFF', size: '18' })
 			);
 		} else {
 			// build
 			var buildIcon = null,
-			    buildStyle = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
-			buildStyle.background = colors.hex[props.item.status];
+			    buildStyle = JSON.parse(JSON.stringify(styles.phase.status.circle.inner));
+			buildStyle.background = _colors2.default.hex[props.item.status];
 			if (props.item.build.status === 'failed') {
-				buildIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-exclamation' });
+				buildIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-exclamation' });
 			} else if (props.item.build.status === 'passed') {
-				buildIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-check' });
+				buildIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-check' });
 			} else if (props.item.build.status === 'running') {
-				buildIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-refresh' });
+				buildIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-refresh' });
 			} else {
 				buildStyle.background = '#E3E3E6';
 			}
@@ -20554,14 +20341,14 @@
 
 			// unit
 			var unitIcon = null,
-			    unitStyle = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
-			unitStyle.background = colors.hex[props.item.status];
+			    unitStyle = JSON.parse(JSON.stringify(styles.phase.status.circle.inner));
+			unitStyle.background = _colors2.default.hex[props.item.status];
 			if (props.item.unit.status === 'failed') {
-				unitIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-exclamation' });
+				unitIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-exclamation' });
 			} else if (props.item.unit.status === 'passed') {
-				unitIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-check' });
+				unitIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-check' });
 			} else if (props.item.unit.status === 'running') {
-				unitIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-refresh' });
+				unitIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-refresh' });
 			} else {
 				unitStyle.background = '#E3E3E6';
 			}
@@ -20573,14 +20360,14 @@
 
 			// functional
 			var functionalIcon = null,
-			    functionaltyle = JSON.parse(JSON.stringify(styles.runItem.phase.status.circle.inner));
-			functionaltyle.background = colors.hex[props.item.status];
+			    functionaltyle = JSON.parse(JSON.stringify(styles.phase.status.circle.inner));
+			functionaltyle.background = _colors2.default.hex[props.item.status];
 			if (props.item.functional.status === 'failed') {
-				functionalIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-exclamation' });
+				functionalIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-exclamation' });
 			} else if (props.item.functional.status === 'passed') {
-				functionalIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-check' });
+				functionalIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-check' });
 			} else if (props.item.functional.status === 'running') {
-				functionalIcon = _react2.default.createElement('i', { style: styles.runItem.phase.status.icon, className: 'fa fa-refresh' });
+				functionalIcon = _react2.default.createElement('i', { style: styles.phase.status.icon, className: 'fa fa-refresh' });
 			} else {
 				functionaltyle.background = '#E3E3E6';
 			}
@@ -20591,8 +20378,8 @@
 			);
 
 			// line 1
-			var line1Styles = JSON.parse(JSON.stringify(styles.runItem.phase.status.line1));
-			line1Styles.background = '/* On "top" */ repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(100,100,100,.3) 2px, rgba(100,100,100,.3) 5px ), ' + colors.hex[props.item.status];
+			var line1Styles = JSON.parse(JSON.stringify(styles.phase.status.line1));
+			line1Styles.background = '/* On "top" */ repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(100,100,100,.3) 2px, rgba(100,100,100,.3) 5px ), ' + _colors2.default.hex[props.item.status];
 			switch (props.item.unit.status) {
 				case 'running':
 				case 'passed':
@@ -20603,13 +20390,13 @@
 			}
 			if (props.item.build.status === 'running') {
 				line1Styles.display = 'block';
-				line1Styles.width = styles.runItem.phase.status.line1.width * (props.item.build.percentage / 100) + 'px';
+				line1Styles.width = styles.phase.status.line1.width * (props.item.build.percentage / 100) + 'px';
 				line1 = _react2.default.createElement('div', { style: line1Styles });
 			}
 
 			// line 2
-			var line2Styles = JSON.parse(JSON.stringify(styles.runItem.phase.status.line2));
-			line2Styles.background = '/* On "top" */ repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(100,100,100,.3) 2px, rgba(100,100,100,.3) 5px ), ' + colors.hex[props.item.status];
+			var line2Styles = JSON.parse(JSON.stringify(styles.phase.status.line2));
+			line2Styles.background = '/* On "top" */ repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(100,100,100,.3) 2px, rgba(100,100,100,.3) 5px ), ' + _colors2.default.hex[props.item.status];
 			switch (props.item.functional.status) {
 				case 'running':
 				// width
@@ -20622,27 +20409,27 @@
 			}
 			if (props.item.unit.status === 'running') {
 				line2Styles.display = 'block';
-				line2Styles.width = styles.runItem.phase.status.line2.width * (props.item.unit.percentage / 100) + 'px';
+				line2Styles.width = styles.phase.status.line2.width * (props.item.unit.percentage / 100) + 'px';
 				line2 = _react2.default.createElement('div', { style: line2Styles });
 			}
 		}
 
 		content = _react2.default.createElement(
 			'div',
-			{ style: styles.runItem.phase.status.wrapper },
+			{ style: styles.phase.status.wrapper },
 			_react2.default.createElement(
 				'div',
-				{ style: styles.runItem.phase.status.circle.wrapper },
+				{ style: styles.phase.status.circle.wrapper },
 				circle1
 			),
 			_react2.default.createElement(
 				'div',
-				{ style: styles.runItem.phase.status.circle.wrapper },
+				{ style: styles.phase.status.circle.wrapper },
 				circle2
 			),
 			_react2.default.createElement(
 				'div',
-				{ style: styles.runItem.phase.status.circle.wrapper },
+				{ style: styles.phase.status.circle.wrapper },
 				circle3
 			),
 			line1,
@@ -20651,8 +20438,8 @@
 
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.runItem.phase.wrapper },
-			_react2.default.createElement(PhaseBackground, null),
+			{ style: styles.phase.wrapper },
+			_react2.default.createElement(_phaseBackground2.default, null),
 			content
 		);
 	};
@@ -20668,13 +20455,13 @@
 		//
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.runItem.start.wrapper },
+			{ style: styles.start.wrapper },
 			_react2.default.createElement(
 				'span',
 				null,
 				date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear()
 			),
-			_react2.default.createElement('i', { style: styles.runItem.start.icon, className: 'fa fa-clock-o' }),
+			_react2.default.createElement('i', { style: styles.start.icon, className: 'fa fa-clock-o' }),
 			_react2.default.createElement(
 				'span',
 				null,
@@ -20685,9 +20472,9 @@
 
 	var FormattedStatus = function FormattedStatus(props) {
 		var content = null,
-		    myStyles = !props.expand ? JSON.parse(JSON.stringify(styles.runItem.status)) : JSON.parse(JSON.stringify(styles.runItem.extendedStatus)),
+		    myStyles = !props.expand ? JSON.parse(JSON.stringify(styles.status)) : JSON.parse(JSON.stringify(styles.extendedStatus)),
 		    icon = null;
-		myStyles.wrapper.color = myStyles.icon.color = colors.hex[props.item.status];
+		myStyles.wrapper.color = myStyles.icon.color = _colors2.default.hex[props.item.status];
 		switch (props.item.status) {
 			case 'running':
 				icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-refresh' });
@@ -20699,7 +20486,7 @@
 				icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-check-circle-o' });
 				break;
 			case 'pending':
-				icon = _react2.default.createElement(Ellipsis, { color: colors.hex[props.item.status], size: '14' });
+				icon = _react2.default.createElement(_ellipsis2.default, { color: _colors2.default.hex[props.item.status], size: '14' });
 				break;
 		}
 		if (props.expand) {
@@ -20741,32 +20528,389 @@
 		return content;
 	};
 
-	var Ellipsis = function Ellipsis(props) {
-		var myStyles = {
-			color: props.color || '#000',
-			borderRadius: props.size || 30,
-			width: props.size || 30,
-			height: props.size || 30,
-			border: '2px solid ' + (props.color || '#000'),
-			display: 'inline-flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			boxSizing: 'border-box',
-			fontSize: props.fontSize || 10,
-			paddingBottom: props.paddingBottom || props.size / 2.5 || 6,
-			userSelect: 'none',
-			WebkitUserSelect: 'none',
-			cursor: 'default'
-		};
+	var RunItem = function RunItem(props) {
+		var extended = null,
+		    onClick = function onClick() {},
+		    myStyles = JSON.parse(JSON.stringify(styles));
+		if (props.item.status !== 'pending' && props.item.status !== 'running') {
+			myStyles.wrapper.cursor = 'pointer';
+			onClick = props.onExpand;
+			extended = _react2.default.createElement(_extended2.default, { item: props.item, expand: props.expand });
+		}
+		if (props.expand) {
+			myStyles.extended.inner.borderTop = '2px solid ' + _colors2.default.hex[props.item.status];
+		}
 		return _react2.default.createElement(
-			'span',
-			{ style: myStyles },
-			'...'
+			'div',
+			{ style: myStyles.wrapper, onClick: onClick },
+			_react2.default.createElement(
+				'div',
+				{ style: styles.extended.wrapper },
+				_react2.default.createElement(
+					'div',
+					{ style: myStyles.extended.inner },
+					_react2.default.createElement(
+						'div',
+						{ style: styles.id },
+						props.item.id
+					),
+					_react2.default.createElement(
+						'div',
+						{ style: styles.user },
+						props.item.user.username
+					),
+					_react2.default.createElement(ParsedDate, { time: props.item.start }),
+					_react2.default.createElement(ItemPhase, { item: props.item })
+				),
+				extended
+			),
+			_react2.default.createElement(FormattedStatus, { item: props.item, expand: props.expand })
 		);
 	};
 
+	exports.default = RunItem;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var styles = {
+		wrapper: {
+			position: 'absolute',
+			zIndex: 0,
+			top: 0,
+			left: 0,
+			width: 450,
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'space-around'
+		},
+		circle: {
+			wrapper: {
+				flexGrow: 1,
+				display: 'flex',
+				justifyContent: 'center',
+				position: 'relative',
+				zIndex: 1
+			},
+			inner: {
+				borderRadius: 36,
+				height: 36,
+				width: 36,
+				background: '#E3E3E6'
+			}
+		},
+		line1: {
+			width: 150,
+			height: 10,
+			position: 'absolute',
+			top: 13,
+			left: 75,
+			background: '#E3E3E6',
+			zIndex: 0
+		},
+		line2: {
+			width: 150,
+			height: 10,
+			position: 'absolute',
+			top: 13,
+			left: 225,
+			background: '#E3E3E6',
+			zIndex: 0
+		}
+	};
+
+	exports.default = function (props) {
+		return _react2.default.createElement(
+			'div',
+			{ style: styles.wrapper },
+			_react2.default.createElement(
+				'div',
+				{ style: styles.circle.wrapper },
+				_react2.default.createElement('div', { style: styles.circle.inner })
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.circle.wrapper },
+				_react2.default.createElement('div', { style: styles.circle.inner })
+			),
+			_react2.default.createElement(
+				'div',
+				{ style: styles.circle.wrapper },
+				_react2.default.createElement('div', { style: styles.circle.inner })
+			),
+			_react2.default.createElement('div', { style: styles.line1 }),
+			_react2.default.createElement('div', { style: styles.line2 })
+		);
+	};
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _colors = __webpack_require__(166);
+
+	var _colors2 = _interopRequireDefault(_colors);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var styles = {
+		wrapper: {
+			boxSizing: 'border-box',
+			padding: '10px 0',
+			borderTop: '1px solid #E3E3E6',
+			display: 'none',
+			justifyContent: 'flex-start'
+		},
+		build: {
+			wrapper: {
+				boxSizing: 'border-box',
+				flexGrow: 1,
+				width: '33.333333%',
+				display: 'flex',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'flex-start'
+			},
+			item: {
+				flexGrow: 1,
+				display: 'flex',
+				alignItems: 'center',
+				flexDirection: 'column'
+			},
+			build: {
+				title: {
+					fontSize: 13,
+					fontWeight: 'bold'
+				},
+				time: {
+					marginTop: 5,
+					fontSize: 11,
+					fontWeight: 'bold'
+				}
+			},
+			link: {
+				cursor: 'pointer',
+				color: '#1D8AC4',
+				fontSize: 11,
+				fontWeight: 'bold',
+				textDecoration: 'underline'
+			},
+			text: {
+				color: '#E3E3E6',
+				fontSize: 11,
+				fontWeight: 'bold',
+				textDecoration: 'underline'
+			},
+			folder: {
+				wrapper: {
+					position: 'relative',
+					height: 40,
+					width: 40
+
+				},
+				folder: {
+					fontSize: 40,
+					position: 'absolute',
+					zIndex: 0
+				},
+				icon: {
+					fontSize: 20,
+					position: 'absolute',
+					zIndex: 1,
+					top: 11,
+					left: 9
+				}
+			}
+		},
+		unit: {
+			wrapper: {
+				boxSizing: 'border-box',
+				padding: '0 10px',
+				flexGrow: 1,
+				width: '33.333333%',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'flex-start'
+			},
+			inner: {
+				boxSizing: 'border-box',
+				padding: '0 10px',
+				flexDirection: 'column'
+			},
+			title: {
+				fontSize: 14
+			},
+			label: {
+				marginTop: 5,
+				fontSize: 11,
+				fontWeight: 'bold',
+				display: 'none'
+			},
+			percentage: {
+				display: 'inline-block',
+				marginTop: 5,
+				color: '#BFBFBF',
+				fontWeight: 'bold',
+				fontSize: 20
+			},
+			icon: {
+				marginLeft: 3,
+				fontSize: 14
+			},
+			cant: {
+				color: '#eb5463',
+				fontSize: 16,
+				position: 'relative',
+				top: 2
+			},
+			text: {
+				marginLeft: 15,
+				color: '#454545',
+				fontSize: 13
+			}
+		},
+		functional: {
+			wrapper: {
+				boxSizing: 'border-box',
+				padding: '0 10px',
+				flexGrow: 1,
+				width: '33.333333%',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'flex-start'
+			},
+			inner: {
+				boxSizing: 'border-box',
+				padding: '0 10px',
+				flexDirection: 'column'
+			},
+			title: {
+				fontSize: 14
+			},
+			label: {
+				marginTop: 5,
+				fontSize: 11,
+				fontWeight: 'bold',
+				display: 'none'
+			},
+			percentage: {
+				display: 'inline-block',
+				marginTop: 5,
+				color: '#BFBFBF',
+				fontWeight: 'bold',
+				fontSize: 20
+			},
+			icon: {
+				marginLeft: 3,
+				fontSize: 14
+			},
+			cant: {
+				color: '#eb5463',
+				fontSize: 16,
+				position: 'relative',
+				top: 2
+			},
+			text: {
+				marginLeft: 15,
+				color: '#454545',
+				fontSize: 13
+			}
+		},
+		pie: {
+			wrapper: {
+				width: 50,
+				height: 50,
+				position: 'relative'
+			},
+			one: {
+				position: 'relative',
+				zIndex: 0,
+				width: '100%',
+				height: '100%',
+				borderRadius: '50%',
+				background: '#1bb392',
+				display: 'inline-block',
+				lineHeight: '50px',
+				backgroundImage: 'linear-gradient(to right, transparent 50%, #f7ab59 0)',
+				color: 'transparent',
+				textAlign: 'center'
+			},
+			two: {
+				position: 'absolute',
+				zIndex: 1,
+				top: 0,
+				left: 0,
+				marginLeft: '50%',
+				height: '100%',
+				width: '50%',
+				borderRadius: '0 100% 100% 0 / 50%',
+				backgroundColor: 'inherit',
+				transformOrigin: 'left',
+				background: '#1bb392'
+			}
+		},
+		graph: {
+			wrapper: {
+				display: 'flex'
+			},
+			inner: {
+				paddingLeft: 10,
+				display: 'flex',
+				flexDirection: 'column',
+				fontSize: 11
+			},
+			passed: {
+				display: 'inline-block',
+				height: 7,
+				width: 7,
+				background: '#1bb392',
+				marginRight: 3
+			},
+			failed: {
+				display: 'inline-block',
+				height: 7,
+				width: 7,
+				background: '#f7ab59',
+				marginRight: 3
+			}
+		},
+		separator: {
+			color: '#E3E3E6',
+			display: 'flex',
+			flexGrow: 1,
+			width: 10,
+			justifyContent: 'center',
+			alignItems: 'center',
+			cursor: 'default',
+			fontSize: 18
+		}
+	};
+
 	var Folder = function Folder(props) {
-		var myStyles = JSON.parse(JSON.stringify(styles.extended.build.folder)),
+		var myStyles = JSON.parse(JSON.stringify(styles.build.folder)),
 		    icon = props.icon || null;
 		myStyles.folder.color = myStyles.icon.color = props.color || '#FFF';
 		return _react2.default.createElement(
@@ -20791,77 +20935,77 @@
 		hours = hours % 12;
 		hours = hours ? hours : 12;
 
-		var myStyles = JSON.parse(JSON.stringify(styles.extended.build.build.title));
-		myStyles.color = colors.hex[props.item.build.status];
+		var myStyles = JSON.parse(JSON.stringify(styles.build.build.title));
+		myStyles.color = _colors2.default.hex[props.item.build.status];
 		if (props.item.build.status === 'passed') {
 			icon = _react2.default.createElement('i', { className: 'fa fa-check-square' });
 		} else if (props.item.build.status === 'failed') {
 			icon = _react2.default.createElement('i', { className: 'fa fa-times-circle' });
 		}
 
-		var debugColor = colors.hex['failed'],
+		var debugColor = _colors2.default.hex['failed'],
 		    debugIcon = _react2.default.createElement('i', { className: 'fa fa-times-circle-o' }),
 		    debugLogs = null,
 		    debugDownload = _react2.default.createElement(
 			'div',
-			{ style: styles.extended.build.text },
+			{ style: styles.build.text },
 			'debug'
 		),
 		    debug = null;
 		if (props.item.build.debug.download) {
-			debugColor = colors.hex['passed'];
+			debugColor = _colors2.default.hex['passed'];
 			debugIcon = _react2.default.createElement('i', { className: 'fa fa-check-circle-o' });
 			debugDownload = _react2.default.createElement(
 				'div',
-				{ style: styles.extended.build.link },
+				{ style: styles.build.link },
 				'debug'
 			);
 		}
 		if (props.item.build.debug.logs) {
 			debugLogs = _react2.default.createElement(
 				'div',
-				{ style: styles.extended.build.link },
+				{ style: styles.build.link },
 				_react2.default.createElement('i', { className: 'fa fa-download' }),
 				' get logs'
 			);
 		}
 		debug = _react2.default.createElement(
 			'div',
-			{ style: styles.extended.build.item },
+			{ style: styles.build.item },
 			_react2.default.createElement(Folder, { icon: debugIcon, color: debugColor }),
 			debugDownload,
 			debugLogs
 		);
 
-		var releaseColor = colors.hex['failed'],
+		var releaseColor = _colors2.default.hex['failed'],
 		    releaseIcon = _react2.default.createElement('i', { className: 'fa fa-times-circle-o' }),
 		    releaseLogs = null,
 		    releaseDownload = _react2.default.createElement(
 			'div',
-			{ style: styles.extended.build.text },
+			{ style: styles.build.text },
 			'debug'
 		),
 		    release = null;
 		if (props.item.build.release.download) {
-			releaseColor = colors.hex['passed'];
+			releaseColor = _colors2.default.hex['passed'];
 			releaseIcon = _react2.default.createElement('i', { className: 'fa fa-check-circle-o' });
 			releaseDownload = _react2.default.createElement(
 				'div',
-				{ style: styles.extended.build.link },
+				{ style: styles.build.link },
 				'release'
 			);
 		}
 		if (props.item.build.release.logs) {
 			releaseLogs = _react2.default.createElement(
 				'div',
-				{ style: styles.extended.build.link },
+				{ style: styles.build.link },
 				_react2.default.createElement('i', { className: 'fa fa-download' }),
 				' get logs'
 			);
 		}
 		release = _react2.default.createElement(
 			'div',
-			{ style: styles.extended.build.item },
+			{ style: styles.build.item },
 			_react2.default.createElement(Folder, { icon: releaseIcon, color: releaseColor }),
 			releaseDownload,
 			releaseLogs
@@ -20869,10 +21013,10 @@
 
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.extended.build.wrapper },
+			{ style: styles.build.wrapper },
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.build.item },
+				{ style: styles.build.item },
 				_react2.default.createElement(
 					'div',
 					{ style: myStyles },
@@ -20881,7 +21025,7 @@
 				),
 				_react2.default.createElement(
 					'div',
-					{ style: styles.extended.build.build.time },
+					{ style: styles.build.build.time },
 					' ',
 					_react2.default.createElement('i', { className: 'fa fa-clock-o' }),
 					' ',
@@ -20894,7 +21038,7 @@
 	};
 
 	var Pie = function Pie(props) {
-		var myStyles = JSON.parse(JSON.stringify(styles.extended.pie)),
+		var myStyles = JSON.parse(JSON.stringify(styles.pie)),
 		    duration,
 		    minutes,
 		    seconds;
@@ -20904,26 +21048,26 @@
 		duration = minutes + '.' + seconds;
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.extended.graph.wrapper },
+			{ style: styles.graph.wrapper },
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.pie.wrapper },
-				_react2.default.createElement('div', { style: styles.extended.pie.one }),
+				{ style: styles.pie.wrapper },
+				_react2.default.createElement('div', { style: styles.pie.one }),
 				_react2.default.createElement('div', { style: myStyles.two })
 			),
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.graph.inner },
+				{ style: styles.graph.inner },
 				_react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement('div', { style: styles.extended.graph.passed }),
+					_react2.default.createElement('div', { style: styles.graph.passed }),
 					props.passed
 				),
 				_react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement('div', { style: styles.extended.graph.failed }),
+					_react2.default.createElement('div', { style: styles.graph.failed }),
 					props.failed
 				),
 				_react2.default.createElement(
@@ -20940,12 +21084,12 @@
 	var ExtendedUnit = function ExtendedUnit(props) {
 		var icon = null,
 		    pie = _react2.default.createElement(Pie, { passed: props.item.unit.passed, failed: props.item.unit.failed, duration: props.item.unit.duration }),
-		    myStyles = JSON.parse(JSON.stringify(styles.extended.unit));
+		    myStyles = JSON.parse(JSON.stringify(styles.unit));
 
-		myStyles.icon.color = colors.hex['failed'];
+		myStyles.icon.color = _colors2.default.hex['failed'];
 		if (props.item.unit.status === 'passed') {
-			myStyles.icon.color = colors.hex[props.item.unit.status];
-			myStyles.percentage.color = colors.hex[props.item.unit.status];
+			myStyles.icon.color = _colors2.default.hex[props.item.unit.status];
+			myStyles.percentage.color = _colors2.default.hex[props.item.unit.status];
 			icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-check-square' });
 		} else {
 			pie = null;
@@ -20955,13 +21099,13 @@
 
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.extended.unit.wrapper },
+			{ style: styles.unit.wrapper },
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.unit.inner },
+				{ style: styles.unit.inner },
 				_react2.default.createElement(
 					'div',
-					{ style: styles.extended.unit.title },
+					{ style: styles.unit.title },
 					'Unit Test ',
 					icon
 				),
@@ -20978,7 +21122,7 @@
 						{ style: myStyles.label },
 						_react2.default.createElement(
 							'span',
-							{ style: styles.extended.unit.text },
+							{ style: styles.unit.text },
 							'Status:'
 						),
 						' ',
@@ -20997,12 +21141,12 @@
 	var ExtendedFunctional = function ExtendedFunctional(props) {
 		var icon = null,
 		    pie = _react2.default.createElement(Pie, { passed: props.item.functional.passed, failed: props.item.functional.failed, duration: props.item.functional.duration }),
-		    myStyles = JSON.parse(JSON.stringify(styles.extended.functional));
+		    myStyles = JSON.parse(JSON.stringify(styles.functional));
 
-		myStyles.icon.color = colors.hex['failed'];
+		myStyles.icon.color = _colors2.default.hex['failed'];
 		if (props.item.functional.status === 'passed') {
-			myStyles.icon.color = colors.hex[props.item.functional.status];
-			myStyles.percentage.color = colors.hex[props.item.functional.status];
+			myStyles.icon.color = _colors2.default.hex[props.item.functional.status];
+			myStyles.percentage.color = _colors2.default.hex[props.item.functional.status];
 			icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-check-square' });
 		} else {
 			pie = null;
@@ -21012,13 +21156,13 @@
 
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.extended.functional.wrapper },
+			{ style: styles.functional.wrapper },
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.functional.inner },
+				{ style: styles.functional.inner },
 				_react2.default.createElement(
 					'div',
-					{ style: styles.extended.functional.title },
+					{ style: styles.functional.title },
 					'Functional Test ',
 					icon
 				),
@@ -21035,7 +21179,7 @@
 						{ style: myStyles.label },
 						_react2.default.createElement(
 							'span',
-							{ style: styles.extended.functional.text },
+							{ style: styles.functional.text },
 							'Status:'
 						),
 						' ',
@@ -21051,8 +21195,8 @@
 		);
 	};
 
-	var Extended = function Extended(props) {
-		var myStyles = JSON.parse(JSON.stringify(styles.extended.wrapper));
+	exports.default = function (props) {
+		var myStyles = JSON.parse(JSON.stringify(styles.wrapper));
 		if (props.expand) {
 			myStyles.display = 'flex';
 		}
@@ -21062,172 +21206,188 @@
 			_react2.default.createElement(ExtendedBuild, { item: props.item }),
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.separator },
+				{ style: styles.separator },
 				'>'
 			),
 			_react2.default.createElement(ExtendedUnit, { item: props.item }),
 			_react2.default.createElement(
 				'div',
-				{ style: styles.extended.separator },
+				{ style: styles.separator },
 				'>'
 			),
 			_react2.default.createElement(ExtendedFunctional, { item: props.item })
 		);
 	};
 
-	var RunItem = function RunItem(props) {
-		var extended = null,
-		    onClick = function onClick() {},
-		    myStyles = JSON.parse(JSON.stringify(styles.runItem));
-		if (props.item.status !== 'pending' && props.item.status !== 'running') {
-			myStyles.wrapper.cursor = 'pointer';
-			onClick = props.onExpand;
-			extended = _react2.default.createElement(Extended, { item: props.item, expand: props.expand });
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var styles = {
+		wrapper: {
+			border: '1px solid #E3E3E6',
+			borderLeft: '7px solid #D1D1D1',
+			borderBottom: 'none',
+			background: '#FFF',
+			height: 40,
+			display: 'flex',
+			boxSizing: 'border-box',
+			flexGrow: 1,
+			alignItems: 'center',
+			color: '#858585',
+			fontSize: 14,
+			fontWeight: 'bold'
+		},
+		id: {
+			display: 'flex',
+			alignItems: 'center',
+			flexGrow: 1,
+			boxSizing: 'border-box',
+			minWidth: 110,
+			paddingLeft: 20
+		},
+		user: {
+			boxSizing: 'border-box',
+			display: 'flex',
+			flexGrow: 1,
+			minWidth: 80
+		},
+		start: {
+			boxSizing: 'border-box',
+			display: 'flex',
+			flexGrow: 1,
+			minWidth: 180
+		},
+		status: {
+			boxSizing: 'border-box',
+			display: 'flex',
+			flexGrow: 1,
+			width: 150,
+			maxWidth: 150,
+			justifyContent: 'center'
+		},
+		phase: {
+			wrapper: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				justifyContent: 'space-around',
+				width: 450
+			},
+			item: {
+				boxSizing: 'border-box',
+				flexGrow: 1,
+				display: 'flex',
+				justifyContent: 'center',
+				maxWidth: 150
+			}
+		},
+		extended: {
+			flexGrow: 1,
+			display: 'flex'
 		}
-		if (props.expand) {
-			myStyles.extended.inner.borderTop = '2px solid ' + colors.hex[props.item.status];
-		}
-		return _react2.default.createElement(
-			'div',
-			{ style: myStyles.wrapper, onClick: onClick },
-			_react2.default.createElement(
-				'div',
-				{ style: styles.runItem.extended.wrapper },
-				_react2.default.createElement(
-					'div',
-					{ style: myStyles.extended.inner },
-					_react2.default.createElement(
-						'div',
-						{ style: styles.runItem.id },
-						props.item.id
-					),
-					_react2.default.createElement(
-						'div',
-						{ style: styles.runItem.user },
-						props.item.user.username
-					),
-					_react2.default.createElement(ParsedDate, { time: props.item.start }),
-					_react2.default.createElement(ItemPhase, { item: props.item })
-				),
-				extended
-			),
-			_react2.default.createElement(FormattedStatus, { item: props.item, expand: props.expand })
-		);
 	};
 
-	var Header = function Header(props) {
+	exports.default = function (props) {
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.header.wrapper },
+			{ style: styles.wrapper },
 			_react2.default.createElement(
 				'div',
-				{ style: styles.runItem.extended.header },
+				{ style: styles.extended },
 				_react2.default.createElement(
 					'div',
-					{ style: styles.header.id },
+					{ style: styles.id },
 					'Changelist'
 				),
 				_react2.default.createElement(
 					'div',
-					{ style: styles.header.user },
+					{ style: styles.user },
 					'Owner'
 				),
 				_react2.default.createElement(
 					'div',
-					{ style: styles.header.start },
+					{ style: styles.start },
 					'Time Started'
 				),
 				_react2.default.createElement(
 					'div',
-					{ style: styles.header.phase.wrapper },
+					{ style: styles.phase.wrapper },
 					_react2.default.createElement(
 						'div',
-						{ style: styles.header.phase.item },
+						{ style: styles.phase.item },
 						'Build'
 					),
 					_react2.default.createElement(
 						'div',
-						{ style: styles.header.phase.item },
+						{ style: styles.phase.item },
 						'Unit Test'
 					),
 					_react2.default.createElement(
 						'div',
-						{ style: styles.header.phase.item },
+						{ style: styles.phase.item },
 						'Functional Test'
 					)
 				)
 			),
 			_react2.default.createElement(
 				'div',
-				{ style: styles.header.status },
+				{ style: styles.status },
 				'Status'
 			)
 		);
 	};
 
-	var List = (function (_React$Component) {
-		_inherits(List, _React$Component);
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
 
-		function List() {
-			_classCallCheck(this, List);
+	'use strict';
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this));
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
-			_this.state = {
-				extendedIndex: -1
-			};
-			return _this;
-		}
+	var _react = __webpack_require__(2);
 
-		_createClass(List, [{
-			key: 'onExpand',
-			value: function onExpand(index) {
-				if (this.state.extendedIndex === index) {
-					index = -1;
-				}
-				this.setState({
-					extendedIndex: index
-				});
-			}
-			//
+	var _react2 = _interopRequireDefault(_react);
 
-		}, {
-			key: 'render',
-			value: function render() {
-				var _this2 = this;
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-				return _react2.default.createElement(
-					'div',
-					{ style: styles.wrapper },
-					_react2.default.createElement(Header, null),
-					_react2.default.createElement(
-						'ul',
-						{ style: styles.list.wrapper },
-						mockData.map(function (item, index) {
-							var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
-							    myColor = colors.hex[item.status];
-							if (_this2.state.extendedIndex !== index) {
-								myStyles.borderLeft = '7px solid ' + myColor;
-							}
-							return _react2.default.createElement(
-								'li',
-								{ style: myStyles, key: index },
-								_react2.default.createElement(RunItem, { item: item, onExpand: function onExpand() {
-										_this2.onExpand(index);
-									}, expand: _this2.state.extendedIndex === index })
-							);
-						})
-					)
-				);
-			}
-		}]);
-
-		return List;
-	})(_react2.default.Component);
-
-	;
-
-	exports.default = List;
+	exports.default = function (props) {
+		var myStyles = {
+			color: props.color || '#000',
+			borderRadius: props.size || 30,
+			width: props.size || 30,
+			height: props.size || 30,
+			border: '2px solid ' + (props.color || '#000'),
+			display: 'inline-flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			boxSizing: 'border-box',
+			fontSize: props.fontSize || 10,
+			paddingBottom: props.paddingBottom || props.size / 2.5 || 6,
+			userSelect: 'none',
+			WebkitUserSelect: 'none',
+			cursor: 'default'
+		};
+		return _react2.default.createElement(
+			'span',
+			{ style: myStyles },
+			'...'
+		);
+	};
 
 /***/ }
 /******/ ]);
