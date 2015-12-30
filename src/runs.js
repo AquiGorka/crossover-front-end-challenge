@@ -35,7 +35,8 @@ var colors = {
 			paddingTop: '5%',
 			paddingBottom: '7%',
 			maxWidth: '85%',
-			margin: 'auto'
+			margin: 'auto',
+			minWidth: 1100
 		},
 		list: {
 			wrapper: {

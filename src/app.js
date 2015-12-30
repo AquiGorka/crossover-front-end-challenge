@@ -5,7 +5,8 @@ var styles = {
 	app: {
 		wrapper: {
 			background: '#F2F2F2',
-			fontFamily: 'Sans-serif'
+			fontFamily: 'Sans-serif',
+			minWidth: 1200
 		}
 	}
 };

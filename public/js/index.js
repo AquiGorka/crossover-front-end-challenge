@@ -19683,7 +19683,8 @@
 		app: {
 			wrapper: {
 				background: '#F2F2F2',
-				fontFamily: 'Sans-serif'
+				fontFamily: 'Sans-serif',
+				minWidth: 1200
 			}
 		}
 	};
@@ -19755,7 +19756,8 @@
 			paddingTop: '5%',
 			paddingBottom: '7%',
 			maxWidth: '85%',
-			margin: 'auto'
+			margin: 'auto',
+			minWidth: 1100
 		},
 		list: {
 			wrapper: {
