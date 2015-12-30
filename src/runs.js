@@ -70,18 +70,25 @@ var colors = {
 				fontSize: 14,
 				fontWeight: 'bold'
 			},
-			item: {
-				boxSizing: 'border-box',
-				display: 'flex',
-				flexGrow: 1,
-				width: 50
-			},
 			id: {
+				display: 'flex',
+				alignItems: 'center',
+				flexGrow: 1,
+				boxSizing: 'border-box',
+				minWidth: 110,
+				paddingLeft: 20
+			},
+			user: {
 				boxSizing: 'border-box',
 				display: 'flex',
 				flexGrow: 1,
-				width: 50,
-				paddingLeft: 20
+				minWidth: 80
+			},
+			start: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				flexGrow: 1,
+				minWidth: 180
 			},
 			status: {
 				boxSizing: 'border-box',
@@ -89,7 +96,6 @@ var colors = {
 				flexGrow: 1,
 				width: 150,
 				maxWidth: 150,
-				paddingLeft: 10,
 				justifyContent: 'center'
 			},
 			phase: {
@@ -110,7 +116,7 @@ var colors = {
 		},
 		runItem: {
 			wrapper: {
-				width: '100%',
+				flexGrow: 1,
 				boxSizing: 'border-box',
 				display: 'flex',
 				color: '#ADADAD',
@@ -122,16 +128,17 @@ var colors = {
 				flexGrow: 1,
 				fontWeight: 'bold',
 				boxSizing: 'border-box',
-				width: 50,
+				minWidth: 110,
 				paddingLeft: 20
 			},
 			user: {
 				display: 'flex',
+				justifyContent: 'flex-start',
 				alignItems: 'center',
 				flexGrow: 1,
 				fontSize: 12,
 				boxSizing: 'border-box',
-				width: 50
+				minWidth: 80
 			},
 			start: {
 				wrapper: {
@@ -141,8 +148,7 @@ var colors = {
 					fontSize: 12,
 					letterSpacing: 2,
 					boxSizing: 'border-box',
-					width: 50,
-					maxWidth: 50
+					minWidth: 180
 				},
 				icon: {
 					marginLeft: 7
@@ -157,10 +163,15 @@ var colors = {
 					boxSizing: 'border-box',
 					display: 'flex',
 					alignItems: 'center',
-					paddingLeft: 10
+					justifyContent: 'center',
+					fontWeight: 'bold',
+					textTransform: 'capitalize'
 				},
 				text: {
 					marginLeft: 5
+				},
+				icon: {
+					fontSize: 13
 				}
 			},
 			extendedStatus: {
@@ -181,6 +192,12 @@ var colors = {
 				},
 				text: {
 					marginLeft: 5
+				},
+				icon: {
+					fontSize: 26
+				},
+				status: {
+					textAlign: 'right'
 				}
 			},
 			phase: {
@@ -318,7 +335,7 @@ var colors = {
 				boxSizing: 'border-box',
 				padding: '10px 0',
 				borderTop: '1px solid #E3E3E6',
-				display: 'flex',
+				display: 'none',
 				justifyContent: 'flex-start'
 			},
 			build: {
@@ -752,7 +769,7 @@ var colors = {
 			}
 	}];
 
-var PhaseBackground = function() {
+var PhaseBackground = function(props) {
 	return (
 		<div style={styles.runItem.phase.background.wrapper}>
 			<div style={styles.runItem.phase.background.circle.wrapper}>
@@ -929,41 +946,45 @@ var ParsedDate = function(props) {
 };
 
 var FormattedStatus = function(props) {
-	//var myStyles = JSON.parse(JSON.stringify(styles.runItem.status.wrapper)),
-	var myStyles = JSON.parse(JSON.stringify(styles.runItem.extendedStatus.wrapper)),
-		iconStyles = {
-			color: colors.hex[props.item.status],
-			fontSize: 13
-		},
-		icon = <Ellipsis color={colors.hex[props.item.status]} size="14" />;
-	myStyles.color = colors.hex[props.item.status];
-	myStyles.fontWeight = 'bold';
-	myStyles.textTransform = 'capitalize';
+	var content = null,
+		myStyles = (!props.expand) ? JSON.parse(JSON.stringify(styles.runItem.status)) : JSON.parse(JSON.stringify(styles.runItem.extendedStatus)),
+		icon = null;
+	myStyles.wrapper.color = myStyles.icon.color = colors.hex[props.item.status];
 	switch(props.item.status) {
 		case 'running':
-			icon = <i style={iconStyles} className="fa fa-refresh"></i>;
+			icon = <i style={myStyles.icon} className="fa fa-refresh"></i>;
 			break;
 		case 'failed':
-			icon = <i style={iconStyles} className="fa fa-times-circle-o"></i>;
+			icon = <i style={myStyles.icon} className="fa fa-times-circle-o"></i>;
 			break;
 		case 'passed':
-			icon = <i style={iconStyles} className="fa fa-check-circle-o"></i>;
+			icon = <i style={myStyles.icon} className="fa fa-check-circle-o"></i>;
+			break;
+		case 'pending':
+			icon = <Ellipsis color={colors.hex[props.item.status]} size="14" />;
 			break;
 	}
-	
-	return (
-		<div style={myStyles}>
-			{icon}
-			<span style={styles.runItem.status.text}>{props.item.status}</span>
-		</div>
-	);
-
-	return (
-		<div style={myStyles}>
-			{icon}
-			<span style={styles.runItem.status.text}>{props.item.status}</span>
-		</div>
-	);
+	if (props.expand) {
+		content = (
+			<div style={myStyles.wrapper}>
+				<div>
+					<div>
+						{icon}
+						<span style={myStyles.text}>Build</span>
+					</div>
+					<div style={myStyles.status}>{(props.item.status === 'passed') ? 'Passed' : 'Failure'}</div>
+				</div>
+			</div>
+		);
+	} else {
+		content = (
+			<div style={myStyles.wrapper}>
+				{icon}
+				<span style={myStyles.text}>{props.item.status}</span>
+			</div>
+		);
+	}
+	return content;
 };
 
 var Ellipsis = function(props) {
@@ -1163,8 +1184,12 @@ var ExtendedFunctional = function(props) {
 };
 
 var Extended = function(props) {
+	var myStyles = JSON.parse(JSON.stringify(styles.extended.wrapper));
+	if (props.expand) {
+		myStyles.display = 'flex';
+	}
 	return (
-		<div style={styles.extended.wrapper}>
+		<div style={myStyles}>
 			<ExtendedBuild item={props.item} />
 			<div style={styles.extended.separator}>></div>
 			<ExtendedUnit item={props.item} />
@@ -1175,29 +1200,40 @@ var Extended = function(props) {
 };
 
 var RunItem = function(props) {
+	var extended = null,
+		onClick = function() {},
+		myStyles = JSON.parse(JSON.stringify(styles.runItem));
+	if (props.item.status !== 'pending' && props.item.status !== 'running') {
+		myStyles.wrapper.cursor = 'pointer';
+		onClick = props.onExpand;
+		extended = <Extended item={props.item} expand={props.expand} />;
+	}
+	if (props.expand) {
+		myStyles.extended.inner.borderTop = '2px solid ' + colors.hex[props.item.status];
+	}
 	return (
-		<div style={styles.runItem.wrapper}>
+		<div style={myStyles.wrapper} onClick={onClick}>
 			<div style={styles.runItem.extended.wrapper}>
-				<div style={styles.runItem.extended.inner}>
+				<div style={myStyles.extended.inner}>
 					<div style={styles.runItem.id}>{props.item.id}</div>
 					<div style={styles.runItem.user}>{props.item.user.username}</div>
 					<ParsedDate time={props.item.start} />
 					<ItemPhase item={props.item} />
 				</div>
-				<Extended item={props.item} />
+				{extended}
 			</div>
-			<FormattedStatus item={props.item} />
+			<FormattedStatus item={props.item} expand={props.expand} />
 		</div>
 	);
 };
 
-var Header = function() {
+var Header = function(props) {
 	return (
 		<div style={styles.header.wrapper}>
 			<div style={styles.runItem.extended.header}>
 				<div style={styles.header.id}>Changelist</div>
-				<div style={styles.header.item}>Owner</div>
-				<div style={styles.header.item}>Time Started</div>
+				<div style={styles.header.user}>Owner</div>
+				<div style={styles.header.start}>Time Started</div>
 				<div style={styles.header.phase.wrapper}>
 					<div style={styles.header.phase.item}>Build</div>
 					<div style={styles.header.phase.item}>Unit Test</div>
@@ -1209,24 +1245,43 @@ var Header = function() {
 	);
 };
 
-var List = function(props) {
-	return (
-		<div style={styles.wrapper}>
-			<Header />
-			<ul style={styles.list.wrapper}>
-				{mockData.map((item, index) => {
-					var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
-						myColor = colors.hex[item.status];
-					myStyles.borderLeft = '7px solid ' + myColor;
-					return (
-							<li style={myStyles} key={index}>
-								<RunItem item={item} />
-							</li>
-						);
-				})}
-			</ul>
-		</div>
-	);
+class List extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			extendedIndex: -1
+		}
+	}
+	onExpand(index) {
+		if (this.state.extendedIndex === index) {
+			index = -1;
+		}
+		this.setState({
+			extendedIndex: index
+		});
+	}
+	//
+	render() {
+		return (
+			<div style={styles.wrapper}>
+				<Header />
+				<ul style={styles.list.wrapper}>
+					{mockData.map((item, index) => {
+						var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
+							myColor = colors.hex[item.status];
+						if (this.state.extendedIndex !== index) {
+							myStyles.borderLeft = '7px solid ' + myColor;
+						}
+						return (
+								<li style={myStyles} key={index}>
+									<RunItem item={item} onExpand={ () => { this.onExpand(index); }} expand={(this.state.extendedIndex === index)} />
+								</li>
+							);
+					})}
+				</ul>
+			</div>
+		);
+	}
 };
 
 export default List;

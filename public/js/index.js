@@ -19702,6 +19702,8 @@
 
 	'use strict';
 
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
@@ -19711,6 +19713,12 @@
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var colors = {
 		hex: {
@@ -19782,18 +19790,25 @@
 				fontSize: 14,
 				fontWeight: 'bold'
 			},
-			item: {
-				boxSizing: 'border-box',
-				display: 'flex',
-				flexGrow: 1,
-				width: 50
-			},
 			id: {
+				display: 'flex',
+				alignItems: 'center',
+				flexGrow: 1,
+				boxSizing: 'border-box',
+				minWidth: 110,
+				paddingLeft: 20
+			},
+			user: {
 				boxSizing: 'border-box',
 				display: 'flex',
 				flexGrow: 1,
-				width: 50,
-				paddingLeft: 20
+				minWidth: 80
+			},
+			start: {
+				boxSizing: 'border-box',
+				display: 'flex',
+				flexGrow: 1,
+				minWidth: 180
 			},
 			status: {
 				boxSizing: 'border-box',
@@ -19801,7 +19816,6 @@
 				flexGrow: 1,
 				width: 150,
 				maxWidth: 150,
-				paddingLeft: 10,
 				justifyContent: 'center'
 			},
 			phase: {
@@ -19822,7 +19836,7 @@
 		},
 		runItem: {
 			wrapper: {
-				width: '100%',
+				flexGrow: 1,
 				boxSizing: 'border-box',
 				display: 'flex',
 				color: '#ADADAD',
@@ -19834,16 +19848,17 @@
 				flexGrow: 1,
 				fontWeight: 'bold',
 				boxSizing: 'border-box',
-				width: 50,
+				minWidth: 110,
 				paddingLeft: 20
 			},
 			user: {
 				display: 'flex',
+				justifyContent: 'flex-start',
 				alignItems: 'center',
 				flexGrow: 1,
 				fontSize: 12,
 				boxSizing: 'border-box',
-				width: 50
+				minWidth: 80
 			},
 			start: {
 				wrapper: {
@@ -19853,8 +19868,7 @@
 					fontSize: 12,
 					letterSpacing: 2,
 					boxSizing: 'border-box',
-					width: 50,
-					maxWidth: 50
+					minWidth: 180
 				},
 				icon: {
 					marginLeft: 7
@@ -19869,10 +19883,15 @@
 					boxSizing: 'border-box',
 					display: 'flex',
 					alignItems: 'center',
-					paddingLeft: 10
+					justifyContent: 'center',
+					fontWeight: 'bold',
+					textTransform: 'capitalize'
 				},
 				text: {
 					marginLeft: 5
+				},
+				icon: {
+					fontSize: 13
 				}
 			},
 			extendedStatus: {
@@ -19893,6 +19912,12 @@
 				},
 				text: {
 					marginLeft: 5
+				},
+				icon: {
+					fontSize: 26
+				},
+				status: {
+					textAlign: 'right'
 				}
 			},
 			phase: {
@@ -20030,7 +20055,7 @@
 				boxSizing: 'border-box',
 				padding: '10px 0',
 				borderTop: '1px solid #E3E3E6',
-				display: 'flex',
+				display: 'none',
 				justifyContent: 'flex-start'
 			},
 			build: {
@@ -20464,7 +20489,7 @@
 		}
 	}];
 
-	var PhaseBackground = function PhaseBackground() {
+	var PhaseBackground = function PhaseBackground(props) {
 		return _react2.default.createElement(
 			'div',
 			{ style: styles.runItem.phase.background.wrapper },
@@ -20657,49 +20682,61 @@
 	};
 
 	var FormattedStatus = function FormattedStatus(props) {
-		//var myStyles = JSON.parse(JSON.stringify(styles.runItem.status.wrapper)),
-		var myStyles = JSON.parse(JSON.stringify(styles.runItem.extendedStatus.wrapper)),
-		    iconStyles = {
-			color: colors.hex[props.item.status],
-			fontSize: 13
-		},
-		    icon = _react2.default.createElement(Ellipsis, { color: colors.hex[props.item.status], size: '14' });
-		myStyles.color = colors.hex[props.item.status];
-		myStyles.fontWeight = 'bold';
-		myStyles.textTransform = 'capitalize';
+		var content = null,
+		    myStyles = !props.expand ? JSON.parse(JSON.stringify(styles.runItem.status)) : JSON.parse(JSON.stringify(styles.runItem.extendedStatus)),
+		    icon = null;
+		myStyles.wrapper.color = myStyles.icon.color = colors.hex[props.item.status];
 		switch (props.item.status) {
 			case 'running':
-				icon = _react2.default.createElement('i', { style: iconStyles, className: 'fa fa-refresh' });
+				icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-refresh' });
 				break;
 			case 'failed':
-				icon = _react2.default.createElement('i', { style: iconStyles, className: 'fa fa-times-circle-o' });
+				icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-times-circle-o' });
 				break;
 			case 'passed':
-				icon = _react2.default.createElement('i', { style: iconStyles, className: 'fa fa-check-circle-o' });
+				icon = _react2.default.createElement('i', { style: myStyles.icon, className: 'fa fa-check-circle-o' });
+				break;
+			case 'pending':
+				icon = _react2.default.createElement(Ellipsis, { color: colors.hex[props.item.status], size: '14' });
 				break;
 		}
-
-		return _react2.default.createElement(
-			'div',
-			{ style: myStyles },
-			icon,
-			_react2.default.createElement(
-				'span',
-				{ style: styles.runItem.status.text },
-				props.item.status
-			)
-		);
-
-		return _react2.default.createElement(
-			'div',
-			{ style: myStyles },
-			icon,
-			_react2.default.createElement(
-				'span',
-				{ style: styles.runItem.status.text },
-				props.item.status
-			)
-		);
+		if (props.expand) {
+			content = _react2.default.createElement(
+				'div',
+				{ style: myStyles.wrapper },
+				_react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'div',
+						null,
+						icon,
+						_react2.default.createElement(
+							'span',
+							{ style: myStyles.text },
+							'Build'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ style: myStyles.status },
+						props.item.status === 'passed' ? 'Passed' : 'Failure'
+					)
+				)
+			);
+		} else {
+			content = _react2.default.createElement(
+				'div',
+				{ style: myStyles.wrapper },
+				icon,
+				_react2.default.createElement(
+					'span',
+					{ style: myStyles.text },
+					props.item.status
+				)
+			);
+		}
+		return content;
 	};
 
 	var Ellipsis = function Ellipsis(props) {
@@ -21013,9 +21050,13 @@
 	};
 
 	var Extended = function Extended(props) {
+		var myStyles = JSON.parse(JSON.stringify(styles.extended.wrapper));
+		if (props.expand) {
+			myStyles.display = 'flex';
+		}
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.extended.wrapper },
+			{ style: myStyles },
 			_react2.default.createElement(ExtendedBuild, { item: props.item }),
 			_react2.default.createElement(
 				'div',
@@ -21033,15 +21074,26 @@
 	};
 
 	var RunItem = function RunItem(props) {
+		var extended = null,
+		    onClick = function onClick() {},
+		    myStyles = JSON.parse(JSON.stringify(styles.runItem));
+		if (props.item.status !== 'pending' && props.item.status !== 'running') {
+			myStyles.wrapper.cursor = 'pointer';
+			onClick = props.onExpand;
+			extended = _react2.default.createElement(Extended, { item: props.item, expand: props.expand });
+		}
+		if (props.expand) {
+			myStyles.extended.inner.borderTop = '2px solid ' + colors.hex[props.item.status];
+		}
 		return _react2.default.createElement(
 			'div',
-			{ style: styles.runItem.wrapper },
+			{ style: myStyles.wrapper, onClick: onClick },
 			_react2.default.createElement(
 				'div',
 				{ style: styles.runItem.extended.wrapper },
 				_react2.default.createElement(
 					'div',
-					{ style: styles.runItem.extended.inner },
+					{ style: myStyles.extended.inner },
 					_react2.default.createElement(
 						'div',
 						{ style: styles.runItem.id },
@@ -21055,13 +21107,13 @@
 					_react2.default.createElement(ParsedDate, { time: props.item.start }),
 					_react2.default.createElement(ItemPhase, { item: props.item })
 				),
-				_react2.default.createElement(Extended, { item: props.item })
+				extended
 			),
-			_react2.default.createElement(FormattedStatus, { item: props.item })
+			_react2.default.createElement(FormattedStatus, { item: props.item, expand: props.expand })
 		);
 	};
 
-	var Header = function Header() {
+	var Header = function Header(props) {
 		return _react2.default.createElement(
 			'div',
 			{ style: styles.header.wrapper },
@@ -21075,12 +21127,12 @@
 				),
 				_react2.default.createElement(
 					'div',
-					{ style: styles.header.item },
+					{ style: styles.header.user },
 					'Owner'
 				),
 				_react2.default.createElement(
 					'div',
-					{ style: styles.header.item },
+					{ style: styles.header.start },
 					'Time Started'
 				),
 				_react2.default.createElement(
@@ -21111,27 +21163,67 @@
 		);
 	};
 
-	var List = function List(props) {
-		return _react2.default.createElement(
-			'div',
-			{ style: styles.wrapper },
-			_react2.default.createElement(Header, null),
-			_react2.default.createElement(
-				'ul',
-				{ style: styles.list.wrapper },
-				mockData.map(function (item, index) {
-					var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
-					    myColor = colors.hex[item.status];
-					myStyles.borderLeft = '7px solid ' + myColor;
-					return _react2.default.createElement(
-						'li',
-						{ style: myStyles, key: index },
-						_react2.default.createElement(RunItem, { item: item })
-					);
-				})
-			)
-		);
-	};
+	var List = (function (_React$Component) {
+		_inherits(List, _React$Component);
+
+		function List() {
+			_classCallCheck(this, List);
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this));
+
+			_this.state = {
+				extendedIndex: -1
+			};
+			return _this;
+		}
+
+		_createClass(List, [{
+			key: 'onExpand',
+			value: function onExpand(index) {
+				if (this.state.extendedIndex === index) {
+					index = -1;
+				}
+				this.setState({
+					extendedIndex: index
+				});
+			}
+			//
+
+		}, {
+			key: 'render',
+			value: function render() {
+				var _this2 = this;
+
+				return _react2.default.createElement(
+					'div',
+					{ style: styles.wrapper },
+					_react2.default.createElement(Header, null),
+					_react2.default.createElement(
+						'ul',
+						{ style: styles.list.wrapper },
+						mockData.map(function (item, index) {
+							var myStyles = JSON.parse(JSON.stringify(styles.list.item)),
+							    myColor = colors.hex[item.status];
+							if (_this2.state.extendedIndex !== index) {
+								myStyles.borderLeft = '7px solid ' + myColor;
+							}
+							return _react2.default.createElement(
+								'li',
+								{ style: myStyles, key: index },
+								_react2.default.createElement(RunItem, { item: item, onExpand: function onExpand() {
+										_this2.onExpand(index);
+									}, expand: _this2.state.extendedIndex === index })
+							);
+						})
+					)
+				);
+			}
+		}]);
+
+		return List;
+	})(_react2.default.Component);
+
+	;
 
 	exports.default = List;
 
