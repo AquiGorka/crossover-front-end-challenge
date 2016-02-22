@@ -168,7 +168,8 @@ const styles = {
 		wrapper: {
 			width: 50,
 			height: 50,
-			position: 'relative'
+			position: 'relative',
+			transform: 'rotate(.1turn)'
 		},
 		one: {
 			position: 'relative',
