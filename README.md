@@ -8,7 +8,7 @@ Semi-crossbrowser compatible (did not check against window's browsers).
 
 * Javascript
 * React
-* CSS3 (flex amongs others)
+* CSS3 (flex amongst others)
 * HTML
 * Webpack
 * Babel (for JSX and ES6 syntax)
