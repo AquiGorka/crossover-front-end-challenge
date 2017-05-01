@@ -20,7 +20,7 @@ npm install
 npm run build
 npm run serve
 ```
-Then open up a browser to: http://localhost:8080 and head to public/
+Then open up a browser to: http://localhost:8080 and head to docs/
 
 ### Demo
-[http://aquigorka.com/crossover/](http://aquigorka.com/crossover/)
+[http://aquigorka.com/crossover-front-end-challenge/](http://aquigorka.com/crossover-front-end-challenge/)
